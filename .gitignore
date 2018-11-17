@@ -2,6 +2,8 @@
 # Created by https://www.gitignore.io/api/node,rails,linux,macos
 # Edit at https://www.gitignore.io/?templates=node,rails,linux,macos
 
+/config/initializers/api_keys.rb
+
 ### Linux ###
 *~
 
