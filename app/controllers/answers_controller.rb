@@ -1,14 +1,43 @@
 class AnswersController < ApplicationController
-  def create
-    @question = Question.find params[:question_id]
+  before_action :find_answer, only: [:show, :edit, :update, :destroy]
+  def new
+    @answer = Answer.new
+  end
+  
+  def create 
     @answer = Answer.new answer_params
-    @answer.question = @question
-
+    render :text => @answer
     if @answer.save
-      # redirect_to question_path(@question)
+      # redirect_to answer_path(@answer.id)
     else
-      @answers = @question.answers.order(created_at: :desc)
-      # render "questions/show"
+      # render :new
     end
+  end 
+  
+  def destroy 
+    @answer.destroy
+    # redirect_to question_path(@answer.question.id)
+  end
+
+
+  def edit
+    @question = Question.find params[:question_id]
+  end
+
+  def update 
+    if @answer.update answer_params
+      # redirect_to question_path(@answer.question.id)
+    else
+      # render :edit
+    end
+  end
+
+  private
+  def answer_params
+    params.require(:answer).permit(:answer)
+  end
+
+  def find_answer
+    @answer = Answer.find params[:id]
   end
 end
