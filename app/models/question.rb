@@ -1,7 +1,8 @@
 class Question < ApplicationRecord
   belongs_to :quiz
+  belongs_to :user
 
-  has_many :answers, dependant: :destroy
+  has_many :answers, dependent: :destroy
 
   validates :title, presence: true, length: { minimum: 10 }, uniqueness: { scope: :quiz }, on: :update
 
