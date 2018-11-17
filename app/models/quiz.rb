@@ -19,7 +19,7 @@ class Quiz < ApplicationRecord
       greater_than: 0
     }
   
-  after_save :titleize_title
+  before_save :titleize_title
 
 
   private 

@@ -1,5 +1,6 @@
 class QuizzesController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_quiz, only: [:show]
 
   def new
     @quiz = Quiz.new
@@ -16,9 +17,16 @@ class QuizzesController < ApplicationController
     end
   end
 
+  def show
+  end
+
   private
 
   def quiz_params
     params.require(:quiz).permit(:title, :description, :difficulty, :points)
+  end
+
+  def find_quiz
+    @quiz = Quiz.find params[:id]
   end
 end
