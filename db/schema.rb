@@ -36,4 +36,43 @@ ActiveRecord::Schema.define(version: 2018_11_17_031958) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "answers", force: :cascade do |t|
+    t.boolean "correct"
+    t.text "description"
+    t.bigint "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.bigint "quiz_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_id"], name: "index_questions_on_quiz_id"
+  end
+
+  create_table "quizzes", force: :cascade do |t|
+    t.string "title"
+    t.string "difficulty"
+    t.integer "points"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "takes", force: :cascade do |t|
+    t.bigint "quiz_id"
+    t.integer "attempts"
+    t.integer "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_id"], name: "index_takes_on_quiz_id"
+  end
+
+  add_foreign_key "answers", "questions"
+  add_foreign_key "questions", "quizzes"
+  add_foreign_key "takes", "quizzes"
 end
