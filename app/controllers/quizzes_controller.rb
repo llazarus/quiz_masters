@@ -11,13 +11,12 @@ class QuizzesController < ApplicationController
     @quiz.user = current_user
 
     if @quiz.save
-      @question = Question.new(quiz_id: @quiz.id)
+      @question = Question.new(quiz_id: @quiz.id, user_id: current_user.id)
       if @question.save
         redirect_to root_path 
         # render :page
       end
       # redirect_to quiz_path(@quiz.id)
-      render :new
     else
       render :new
     end
