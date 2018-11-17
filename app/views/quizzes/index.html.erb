@@ -1,0 +1,10 @@
+<h1>Quizzes</h1>
+
+<ul>
+  <% @quizzes.each do |quiz| %>
+    <li>
+      <%= link_to(quiz.title, quiz_path(quiz.id))%>
+  
+    </li>
+  <% end %>
+</ul>
