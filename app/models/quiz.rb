@@ -4,16 +4,11 @@ class Quiz < ApplicationRecord
   has_many :questions, dependent: :destroy
 
   validates :title, 
-    presence: true,
-    length: {
-      minimum: 10
-    }
+    presence: true
 
   validates :description,
-    presence: true,
-    length: {
-      minimum: 25
-    }
+    presence: true
+
 
   validates :difficulty,
     presence: true
