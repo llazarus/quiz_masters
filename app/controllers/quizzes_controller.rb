@@ -20,6 +20,10 @@ class QuizzesController < ApplicationController
   def show
   end
 
+  def index
+    @quizzes = Quiz.all.order(created_at: :desc)
+  end
+
   private
 
   def quiz_params
