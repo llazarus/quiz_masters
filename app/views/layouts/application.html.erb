@@ -15,6 +15,15 @@
     <%# Devise default alerts: %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <header>
+      <nav>
+        <%= link_to 'Home Page', root_path %>
+        |
+        <%= link_to 'New Quiz', new_quiz_path %>
+        |
+        <%= link_to "Quizzes", quizzes_path %>
+      </nav>
+    </header>
 
     <%= yield %>
   </body>
