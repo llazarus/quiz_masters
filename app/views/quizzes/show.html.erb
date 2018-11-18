@@ -5,3 +5,7 @@
 <p>Points: <%=@quiz.points%></p>
 
 
+<% @quiz.questions.each do |q| %>
+  <%= q.description%>
+
+<% end %>
