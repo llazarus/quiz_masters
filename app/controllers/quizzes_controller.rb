@@ -21,7 +21,8 @@ class QuizzesController < ApplicationController
   end
 
   def index
-    @quizzes = Quiz.all.order(created_at: :desc)
+    @temp = Quiz.all.order(created_at: :desc)
+    @quizzes = @temp.where("user_id != ?", current_user)
   end
 
   def destroy
