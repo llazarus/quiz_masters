@@ -1,16 +1,7 @@
 <h1><%=@quiz.title%></h1>
-
-<%= react_component "AnswersList", {
-  answers: [{id: 1, correct: true, description: "567"}, {id: 2, correct: false, description: "Ice Cream"}]
-}%>
-
 <small>Created by: <%= @quiz.user.username %></small>
-
-
 <p><%=@quiz.description%></p>
-
 <p> Difficulty: <%=@quiz.difficulty%> </p>
-
 <p>Points: <%=@quiz.points%></p>
 
 
