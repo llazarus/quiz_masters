@@ -20,9 +20,11 @@ class QuizzesController < ApplicationController
 
   def show
   end
-  
+
   def index
     @quizzes = Quiz.all.order(created_at: :desc)
+    @myCreations = Quiz.where("user_id = ?", current_user)
+    p @myCreations
   end
 
   def destroy

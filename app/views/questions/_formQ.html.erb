@@ -1,4 +1,4 @@
-<%= form_for([@quiz, @question]) do |form| %>
+<%= form_for([:quiz, @question]) do |form| %>
 
 <% if @question.errors.present? %>
     <p>
