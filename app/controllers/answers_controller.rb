@@ -4,19 +4,23 @@ class AnswersController < ApplicationController
     @answer = Answer.new
   end
   
-  def create 
+  def create
+    @question = Question.find params[:question_id] 
     @answer = Answer.new answer_params
-    render :text => @answer
+    @answer.question = @question
+    @answer.user = current_user
+
     if @answer.save
-      # redirect_to answer_path(@answer.id)
+      redirect_to edit_quiz_question_path(@answer.question.quiz.id,@question)
     else
-      # render :new
+      redirect_to edit_quiz_question_path(@answer.question.quiz.id,@question)
     end
   end 
   
-  def destroy 
+  def destroy
+    question = @answer.question  
     @answer.destroy
-    # redirect_to question_path(@answer.question.id)
+    redirect_to edit_quiz_question_path(question.quiz.id, question.id)
   end
 
 
@@ -26,15 +30,15 @@ class AnswersController < ApplicationController
 
   def update 
     if @answer.update answer_params
-      # redirect_to question_path(@answer.question.id)
+      redirect_to edit_quiz_question_path(@answer.question.quiz.id,@question)
     else
-      # render :edit
+      redirect_to edit_quiz_question_path(@answer.question.quiz.id,@question)
     end
   end
 
   private
   def answer_params
-    params.require(:answer).permit(:answer)
+    params.require(:answer).permit(:correct, :description)
   end
 
   def find_answer

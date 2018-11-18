@@ -1,10 +1,21 @@
-<h1>Edit Question</h1>
-
-<%= render "form_Q" %>
-
-<%= render "form_A" %>
-
 <section>
+  <%= link_to("See your Whole Quiz!", quiz_path(@question.quiz.id))%>
+</section>
+
+<section id="edit-question-form">  
+  <h1>Edit Question</h1>
+
+  <%= render "formQ" %>
+</section>
+
+<section id="new-answer-form">
+  <h2>New Answer</h2>
+  <%= render "formA" %>
+</section>
+
+<section id="existing-answers-show">
+<h2>Existing Answers</h2>
+
   <ul>
     <% @answers.each do |answer| %>
       <li>
@@ -14,8 +25,31 @@
           Wrong
         <% end %>
 
-        <%= link_to(answer.description, edit_path(answer.id)) %>
-      </li>
+          <%= form_for(answer) do |form| %>
+
+          <% if answer.errors.present? %>
+              <p>
+                <%= answer.errors.full_messages.join(", ") %>
+              </p>
+            <% end %>
+
+            <%= form.radio_button(:correct, "correct" )%>
+            <%= form.label :correct, "A Correct Answer" %> <br>
+          
+            <%= form.radio_button(:correct, "wrong" )%>
+            <%= form.label :correct, "A Wrong Answer" %> <br>
+
+            <div class="form-group">
+              <%= form.label :description %> <br>
+              <%= form.text_area :description, class: "form-control" %>
+            </div>
+
+
+
+            <%= form.submit class: "btn btn-outline-primary" %>
+          <% end %>
+
+        </li>
     <% end %>
   </ul>
 </section>
