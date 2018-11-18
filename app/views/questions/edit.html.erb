@@ -1,8 +1,8 @@
 <h1>Edit Question</h1>
 
-<%= render "form_Q" %>
+<%= render "formQ" %>
 
-<%= render "form_A" %>
+
 
 <section>
   <ul>
@@ -13,9 +13,30 @@
         <% else %>
           Wrong
         <% end %>
+          <%= form_for(answer) do |form| %>
 
-        <%= link_to(answer.description, edit_path(answer.id)) %>
-      </li>
+          <% if answer.errors.present? %>
+              <p>
+                <%= answer.errors.full_messages.join(", ") %>
+              </p>
+            <% end %>
+
+            <div class="form-group">
+              <%= form.label :correct %> <br>
+              <%= form.radio_button(:correct, "correct", class: "form-control" )%>
+            </div>
+
+            <div class="form-group">
+              <%= form.label :description %> <br>
+              <%= form.text_area :description, class: "form-control" %>
+            </div>
+
+
+
+            <%= form.submit class: "btn btn-outline-primary" %>
+          <% end %>
+
+        </li>
     <% end %>
   </ul>
 </section>

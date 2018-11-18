@@ -1,8 +1,8 @@
-<%= form_for([@question, @answer]) do |form| %>
+<%= form_for([@question.quiz, @question, answer]) do |form| %>
 
 <% if @answer.errors.present? %>
     <p>
-      <%= @answer.errors.full_messages.join(", ") %>
+      <%= answer.errors.full_messages.join(", ") %>
     </p>
   <% end %>
 
