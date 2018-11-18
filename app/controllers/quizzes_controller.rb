@@ -45,19 +45,17 @@ class QuizzesController < ApplicationController
   def submit
     questions = @quiz.questions
     userAnswers = quiz_submit_params[:user_answers]
-    p '======= testing ========='
+    correctAnswers = 0
     userAnswers.each_with_index do |question, index|
       userAnswer = question[:answers][0][:correct]
       userAnswerId = question[:answers][0][:answer_id]
-      dbAnswer = questions[index].answers.detect { |a| a[:id] == 74 }
+      dbAnswer = questions[index].answers.detect { |a| a[:id] == userAnswerId }
       dbAnswerActual = dbAnswer[:correct]
       if userAnswer == dbAnswerActual
-        p "Correct!"
-      else
-        p "Incorrect!"
+        correctAnswers += 1
       end
     end
-    p '======= testing ========='
+    p correctAnswers
     head :ok
   end
 
