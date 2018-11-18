@@ -65,3 +65,38 @@
   font-size: 16px;
   width: 100%;
 }
+
+.tab-content {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0px 0px 5px 5px;
+  padding-bottom: 20px;
+  padding-right: 40px;
+  padding-left: 40px;
+  padding-top: 20px;
+}
+
+.nav-tabs {
+  margin-bottom: 0;
+  
+}
+
+#indexNav{
+  padding-right: 40px;
+  margin-left: 40px;
+  margin-right: 40px;
+  
+}
+#nav-tabContent{
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.nav-tabs > li > a:hover{
+  background-color: rgb(232, 214, 243) !important;
+  border-radius: 5px;
+  color:#000;   
+}
