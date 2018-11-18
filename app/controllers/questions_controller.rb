@@ -30,6 +30,7 @@
 
   def edit
     @answers = @question.answers
+    @answer = Answer.new
   end
   
   def update

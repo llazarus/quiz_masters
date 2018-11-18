@@ -1,10 +1,17 @@
-<h1>Edit Question</h1>
+<section id="edit-question-form">  
+  <h1>Edit Question</h1>
 
-<%= render "formQ" %>
+  <%= render "formQ" %>
+</section>
 
+<section id="new-answer-form">
+  <h2>New Answer</h2>
+  <%= render "formA" %>
+</section>
 
+<section id="existing-answers-show">
+<h2>Existing Answers</h2>
 
-<section>
   <ul>
     <% @answers.each do |answer| %>
       <li>
