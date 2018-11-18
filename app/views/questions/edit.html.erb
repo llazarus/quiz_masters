@@ -1,0 +1,21 @@
+<h1>Edit Question</h1>
+
+<%= render "form_Q" %>
+
+<%= render "form_A" %>
+
+<section>
+  <ul>
+    <% @answers.each do |answer| %>
+      <li>
+        <% if answer.correct = true %>
+          Correct
+        <% else %>
+          Wrong
+        <% end %>
+
+        <%= link_to(answer.description, edit_path(answer.id)) %>
+      </li>
+    <% end %>
+  </ul>
+</section>
