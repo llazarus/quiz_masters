@@ -5,14 +5,12 @@
     <a class="nav-link active" id="nav-quizzes-tab" data-toggle="tab" href="#nav-quizzes" role="tab" aria-controls="nav-quizzes" aria-selected="true">All Quizzes</a>
   </li>
   <li class="nav-item">
+    <a class="nav-link" id="nav-myTakes-tab" data-toggle="tab" href="#nav-myTakes" role="tab" aria-controls="nav-myTakes" aria-selected="false">To Takes, and Takings</a>
+  </li>
+  <li class="nav-item">
     <a class="nav-link" id="nav-myCreations-tab" data-toggle="tab" href="#nav-myCreations" role="tab" aria-controls="nav-myCreations" aria-selected="false">myCreations</a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" id="nav-myTakes-tab" data-toggle="tab" href="#nav-myTakes" role="tab" aria-controls="nav-myTakes" aria-selected="false">myTakes</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="nav-myScore-tab" data-toggle="tab" href="#nav-myScore" role="tab" aria-controls="nav-myScore" aria-selected="false">myScore</a>
-  </li>
+ 
 </ul>
     
   <div class="tab-content" id="nav-tabContent">
@@ -42,14 +40,44 @@
       <% end %>
     </div>
 
-    <div class="tab-pane fade" id="nav-myCreations" role="tabpanel" aria-labelledby="nav-myCreations-tab">
-    ...
-    </div>
     <div class="tab-pane fade" id="nav-myTakes" role="tabpanel" aria-labelledby="nav-myTakes-tab">
-    ...
+
+      <%%>
+      
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+        <h5 class="card-title"> Quiz Title </h5>
+        <p class="card-text">Taken: "Enter number of times taken logic here"</p>
+        <p class="card-text">Score: "Enter quiz score logic here"</p>
+        <button class="btn btn-primary">Take Quiz</button>
+        <button class="btn btn-danger"> Delete (Doesn't work)</button>
+        </div>
+      </div>
+      
     </div>
-    <div class="tab-pane fade" id="nav-myScore" role="tabpanel" aria-labelledby="nav-myScore-tab">
-    ...
+    <div class="tab-pane fade" id="nav-myCreations" role="tabpanel" aria-labelledby="nav-myCreations-tab">
+      <% @myCreations.each do |quiz| %>
+        <li>
+          <%= link_to(quiz.title, quiz_path(quiz.id))%><br>
+
+          <% if can?(:edit, quiz) %>
+            <%= link_to(
+              "Edit",
+              edit_quiz_path(quiz.id)
+            )%>
+          <% end %>
+          ·
+          <% if can?(:delete, quiz) %>
+            <%= link_to( 
+              "Delete", 
+              quiz_path(quiz.id), 
+              method: :delete, 
+              data: { confirm: "Are you sure you want to delete this?" })
+            %>
+          <% end %>
+        </li>
+      <% end %>
     </div>
+
   </div>
       
