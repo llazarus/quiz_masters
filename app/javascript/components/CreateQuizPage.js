@@ -18,7 +18,6 @@ class CreateQuizPage extends Component {
         const description = event.currentTarget.description.value;
         const difficulty = event.currentTarget.difficulty.value;
         this.setState({ quiz: { title, description, difficulty } });
-        // const { title, description, difficulty } = this.state.quiz;
         fetch('/quizzes', {
             method: 'POST',
             credentials: 'include',
@@ -28,12 +27,8 @@ class CreateQuizPage extends Component {
             body: JSON.stringify({ quiz: { title, description, difficulty, points: 40 } })
         }).then(res => res.json()).then((data) => {
             const { quizID, questionID } = data;
-            console.log(quizID, questionID);
             this.props.history.push(`/quizzes/${quizID}/questions/${questionID}`)
         });
-
-        // post to quiz#create getting back quiz and question id
-        // use react router to update url with those two ids
     }
     handleQuestionSubmit = (event) => {
         event.preventDefault();
@@ -44,9 +39,19 @@ class CreateQuizPage extends Component {
                 title,
                 description
             }
-        })
-        // Post to questions#patch
-        // get back new question id and use react-router to update url
+        });
+        const { quizID, questionID } = this.props.match.params;
+        fetch(`/quzzes/${quizID}/questions/${questionID}`, {
+            method: 'PUT',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ question: { title, description } })
+        }).then(res => res.json()).then((data) => {
+            const { quizID, questionID } = data;
+            this.props.history.push(`/quizzes/${quizID}/questions/${questionID}`)
+        });
     }
     handleAnswersSubmit = (event) => {
         event.preventDefault();

@@ -23,9 +23,10 @@ class QuestionsController < ApplicationController
   end
   
   def update
+    puts params
     @question = Question.find params[:id]
     @answers = Answer.where("question_id = #{@question.id}")
-    @difficulty = @question.difficulty.to_i
+    @difficulty = @quiz.difficulty.to_i
     answers_array = params[:answers]
     question = params[:question]
 
