@@ -13,8 +13,7 @@
 
   <body>
     <%# Devise default alerts: %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
     <header>
       <nav>
         <%= link_to 'Home Page', root_path %>
@@ -30,6 +29,10 @@
         <%= link_to "Sign Up", new_user_registration_path %>
       </nav>
     </header>
+
+      <strong>
+        <%= alert %>
+      </strong>
 
     <%= yield %>
   </body>
