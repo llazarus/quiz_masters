@@ -33,6 +33,7 @@ class AnswersController < ApplicationController
       redirect_to edit_quiz_question_path(@answer.question.quiz.id,@question)
     else
       redirect_to edit_quiz_question_path(@answer.question.quiz.id,@question)
+      
     end
   end
 
