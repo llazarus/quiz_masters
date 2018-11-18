@@ -9,14 +9,16 @@ class QuizzesController < ApplicationController
   def create
     @quiz = Quiz.new quiz_params
     @quiz.user = current_user
+    @difficulty = @quiz.difficulty.to_i
 
     if @quiz.save
       @question = Question.new(quiz_id: @quiz.id, user_id: current_user.id)
       if @question.save
-        redirect_to root_path 
-        # render :page
+        @difficulty.times do |x|
+          Answer.create(description: x, question_id: @question.id, user_id: current_user.id)
+        end
+        render json: { quizID: @quiz.id, questionID: @question.id }
       end
-      # redirect_to quiz_path(@quiz.id)
     else
       render :new
     end
