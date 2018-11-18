@@ -21,39 +21,39 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item ">
+            <li class="nav-item mr-2">
               <a class="nav-link" href="#"><%= link_to "Home", root_path %> </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item mr-2">
               
             </li>
-            <li class="nav-item">
+            <li class="nav-item mr-2">
               <a class="nav-link" href="#"><%= link_to "Quizzes", quizzes_path %></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item mr-2">
               <a class="nav-link" href="#"><%= link_to "Leaderboard", leaderboard_path %></a>
             </li>
           <% if user_signed_in? %>
-            <li class="nav-item">
+            <li class="nav-item mr-2">
               <a class="nav-link" href="#"><%= link_to "New Quiz", new_quiz_path %></a>
             </li>
           <% end %>
           </ul>
-          <ul class="navbar-nav pull-right">
+          <ul class="navbar-nav mr-2">
           <% if user_signed_in? %>
-            <li class="nav-item">
+            <li class="nav-item mr-2">
               <a class="nav-link" href="#"><%= link_to current_user.first_name, edit_user_registration_path %> </a>
 
             </li>
-            <li class="nav-item pull-right">
+            <li class="nav-item pull-right mr-2">
               <a class="nav-link" href="#"> <%= link_to "Sign Out", destroy_user_session_path, method: :delete %> </a>
             </li>
        
           <% else %>
-            <li class="nav-item">
+            <li class="nav-item mr-2">
               <a class="nav-link" href="#"><%= link_to "Sign In", new_user_session_path %></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item mr-2">
               <a class="nav-link" href="#"><%= link_to "Sign Up", new_user_registration_path %></a>
             </li>
           <%end%>
