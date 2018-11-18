@@ -5,18 +5,33 @@ import CreateQuestion from './CreateQuestion';
 class CreateQuizPage extends Component {
     constructor(props) {
         super(props);
+        this.handleQuizSubmit = this.handleQuizSubmit.bind(this);
         this.state = {
             quiz: undefined,
             questions: undefined,
             answers: [],
         }
     }
-    handleQuizSubmit = (event) => {
+    handleQuizSubmit(event) {
         event.preventDefault();
         const title = event.currentTarget.title.value;
         const description = event.currentTarget.description.value;
         const difficulty = event.currentTarget.difficulty.value;
         this.setState({ quiz: { title, description, difficulty } });
+        // const { title, description, difficulty } = this.state.quiz;
+        fetch('/quizzes', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ quiz: { title, description, difficulty, points: 40 } })
+        }).then(res => res.json()).then((data) => {
+            const { quizID, questionID } = data;
+            console.log(quizID, questionID);
+            this.props.history.push(`/quizzes/${quizID}/questions/${questionID}`)
+        });
+
         // post to quiz#create getting back quiz and question id
         // use react router to update url with those two ids
     }
@@ -29,7 +44,7 @@ class CreateQuizPage extends Component {
                 title,
                 description
             }
-        });
+        })
         // Post to questions#patch
         // get back new question id and use react-router to update url
     }

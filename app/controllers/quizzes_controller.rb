@@ -1,4 +1,5 @@
 class QuizzesController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :authenticate_user!, only: [:new, :create, :destroy, :edit, :update]
   before_action :find_quiz, only: [:show, :destroy, :edit, :update]
 
@@ -10,7 +11,6 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.new quiz_params
     @quiz.user = current_user
     @difficulty = @quiz.difficulty.to_i
-
     if @quiz.save
       @question = Question.new(quiz_id: @quiz.id, user_id: current_user.id)
       if @question.save
@@ -21,6 +21,7 @@ class QuizzesController < ApplicationController
       end
     else
       render :new
+      puts @quiz.errors.full_messages
     end
   end
 
