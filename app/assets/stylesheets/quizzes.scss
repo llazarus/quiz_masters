@@ -3,13 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-nav {
+.titleNav {
   background-color: rgb(72, 133, 237);
   padding: 20px; 
   margin-bottom: 10px;
 }
 
-nav a {
+.titleNav a {
   color: white
 }
 
@@ -73,4 +73,42 @@ nav a {
   border: 1px solid black;
   font-size: 16px;
   width: 100%;
+}
+
+.tab-content {
+  border-left: 1px solid rgb(72, 133, 237);
+  border-right: 1px solid rgb(72, 133, 237);
+  border-bottom: 1px solid rgb(72, 133, 237);
+  border-radius: 0px 0px 5px 5px;
+  padding-bottom: 20px;
+  padding-right: 40px;
+  padding-left: 40px;
+  padding-top: 20px;
+}
+
+.nav-tabs {
+  margin-bottom: 0;
+  
+}
+
+#indexNav{
+  padding-right: 40px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+#nav-tabContent{
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+// .tab-pane{
+//   border: solid #d45500;
+// }
+
+.nav-tabs > li a {
+  border: 1px solid #1A3E5E;
+  background-color:#2F71AB;
+  color:#fff; 
 }
