@@ -1,3 +1,5 @@
+<h1>Edit</h1>
+
 <%= form_for(@quiz) do |form| %>
   <% if @quiz.errors.present?%>
     <p>
@@ -28,7 +30,7 @@
     <%= form.label :points %>
     <%= form.number_field :points%><br>
 
-    <%= form.submit("Create Quiz") %>
+    <%= form.submit("Done") %>
 
   </div>
 
