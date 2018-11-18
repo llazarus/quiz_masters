@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import NewQuizForm from './NewQuizForm';
 import CreateQuestion from './CreateQuestion';
 
-
-// RESET QUESTIONS CONTROLLER AND ROUTES WHEN DONE
-
-export default class CreateQuizPage extends Component {
+class CreateQuizPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,10 +17,8 @@ export default class CreateQuizPage extends Component {
         const description = event.currentTarget.description.value;
         const difficulty = event.currentTarget.difficulty.value;
         this.setState({ quiz: { title, description, difficulty } });
-        setTimeout(() => {
-            console.log('Quiz:', this.state.quiz);
-        }, 500)
-        // post to quiz#create
+        // post to quiz#create getting back quiz and question id
+        // use react router to update url with those two ids
     }
     handleQuestionSubmit = (event) => {
         event.preventDefault();
@@ -35,9 +30,8 @@ export default class CreateQuizPage extends Component {
                 description
             }
         });
-        setTimeout(() => {
-            console.log('Question:', this.state.question);
-        }, 500)
+        // Post to questions#patch
+        // get back new question id and use react-router to update url
     }
     handleAnswersSubmit = (event) => {
         event.preventDefault();
@@ -49,9 +43,7 @@ export default class CreateQuizPage extends Component {
             answers.push(answer);
         });
         this.setState({ answers });
-        setTimeout(() => {
-            console.log('Answers:', this.state.answers);
-        }, 500)
+        // Post to questions#patch
     }
     render() {
         if (!this.state.quiz) {
@@ -69,3 +61,5 @@ export default class CreateQuizPage extends Component {
         )
     }
 };
+
+export default CreateQuizPage;
