@@ -15,7 +15,7 @@
     <% end %> 
     <%= link_to(
       "Edit",
-      edit_quiz_question_path(question.id)
+      edit_quiz_question_path(@quiz.id, question.id)
     )%>
 
   </ul>
