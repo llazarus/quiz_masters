@@ -24,6 +24,7 @@ class QuizzesController < ApplicationController
     @quizzes = Quiz.all.order(created_at: :desc)
     @myCreations = Quiz.where("user_id = ?", current_user)
     p @myCreations
+    @takes = Take.where("user_id = ?", current_user)
   end
 
   def destroy
