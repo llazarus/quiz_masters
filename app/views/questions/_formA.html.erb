@@ -7,10 +7,10 @@
   <% end %>
 
 
-    <%= form.radio_button(:correct, "correct" )%>
+    <%= form.radio_button(:correct, true )%>
     <%= form.label :correct, "A Correct Answer" %> <br>
   
-    <%= form.radio_button(:correct, "wrong" )%>
+    <%= form.radio_button(:correct, false )%>
     <%= form.label :correct, "A Wrong Answer" %> <br>
  
 
