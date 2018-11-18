@@ -5,31 +5,44 @@
     </p>
   <% end %>
 
-  <div class="quiz_form">
-    <%= form.label :title %>
-    <%= form.text_field :title%><br>
+  <div class="quiz-form">
 
-    <%= form.label :description%><br>
-    <%= form.text_area :description%><br>
+    <div class="quiz-form-title">
+      <%= form.label :title %>
+       <%= form.text_field :title, class: "quiz-form-input"%>
+    </div>
+
+    <div class="quiz-form-description"> 
+      <%= form.label :description%>
+      <%= form.text_area :description, class: "quiz-form-input" %>
+    </div>
     
+    <div class="quiz-form-difficulty"> 
+      <%= form.label "difficulty", "Difficulty:"%><br>
+      
+      <div class="quiz-form-difficulty-buttons">
+        <%= form.label :Beginner%>
+        <%= form.radio_button(:difficulty, :Beginner)%>
+        
+        <%= form.label :Intermediate%>
+        <%= form.radio_button(:difficulty, :Intermediate)%>
 
-    <%= form.label :difficulty%><br>
+        <%= form.label :Expert%>
+        <%= form.radio_button(:difficulty, :Expert)%>
+        <br>
+      </div>
 
-    <%= form.label :Beginner%>
-    <%= form.radio_button(:difficulty, 3)%>
+    </div>
     
-    <%= form.label :Intermediate%>
-    <%= form.radio_button(:difficulty, 5)%>
+    <div class="quiz-form-points">
+      <%= form.label :points %>
+      <%= form.number_field :points, class: "quiz-form-input"%>
 
-    <%= form.label :Expert%>
-    <%= form.radio_button(:difficulty, 7)%>
-    <br>
+    </div>
 
-    <%= form.label :points %>
-    <%= form.number_field :points%><br>
-
-    <%= form.submit("Create Quiz") %>
-
+    <div class="quiz-form-submit">
+      <%= form.submit("Create Quiz") %>
+    </div>
   </div>
 
 <% end %>
