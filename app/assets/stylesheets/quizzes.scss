@@ -76,9 +76,9 @@
 }
 
 .tab-content {
-  border-left: 1px solid rgb(72, 133, 237);
-  border-right: 1px solid rgb(72, 133, 237);
-  border-bottom: 1px solid rgb(72, 133, 237);
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   border-radius: 0px 0px 5px 5px;
   padding-bottom: 20px;
   padding-right: 40px;
@@ -95,6 +95,7 @@
   padding-right: 40px;
   margin-left: 40px;
   margin-right: 40px;
+  
 }
 #nav-tabContent{
   padding-left: 40px;
@@ -103,12 +104,8 @@
   margin-right: 40px;
 }
 
-// .tab-pane{
-//   border: solid #d45500;
-// }
-
-.nav-tabs > li a {
-  border: 1px solid #1A3E5E;
-  background-color:#2F71AB;
-  color:#fff; 
+.nav-tabs > li > a:hover{
+  background-color: rgb(232, 214, 243) !important;
+  border-radius: 5px;
+  color:#000;   
 }
