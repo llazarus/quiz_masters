@@ -12,7 +12,7 @@
     if @quiz.user == current_user && @question.save
       
       respond_to do |format|
-        format.html { render :edit } 
+        format.html { render :new } 
         format.json { render json: @question }
       end
       # TODO redirect/render will be unneccesary because of react. 
@@ -20,6 +20,7 @@
     else 
       # TODO same as above
       flash[:danger] = "Unable to create question"
+
     end
 
   end
@@ -29,6 +30,7 @@
   end
 
   def edit
+    @quiz = @question.quiz
     @answers = @question.answers
     @answer = Answer.new
   end
