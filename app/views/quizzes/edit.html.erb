@@ -1,0 +1,37 @@
+<h1>Edit</h1>
+
+<%= form_for(@quiz) do |form| %>
+  <% if @quiz.errors.present?%>
+    <p>
+      <%= @quiz.errors.full_messages.join("<br>").html_safe%>
+    </p>
+  <% end %>
+
+  <div class="quiz_form">
+    <%= form.label :title %>
+    <%= form.text_field :title%><br>
+
+    <%= form.label :description%><br>
+    <%= form.text_area :description%><br>
+    
+
+    <%= form.label :difficulty%><br>
+
+    <%= form.label :Beginner%>
+    <%= form.radio_button(:difficulty, :Beginner)%>
+    
+    <%= form.label :Intermediate%>
+    <%= form.radio_button(:difficulty, :Intermediate)%>
+
+    <%= form.label :Expert%>
+    <%= form.radio_button(:difficulty, :Expert)%>
+    <br>
+
+    <%= form.label :points %>
+    <%= form.number_field :points%><br>
+
+    <%= form.submit("Done") %>
+
+  </div>
+
+<% end %>
