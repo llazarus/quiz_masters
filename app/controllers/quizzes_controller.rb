@@ -11,7 +11,7 @@ class QuizzesController < ApplicationController
     @quiz.user = current_user
 
     if @quiz.save
-      # redirect_to
+      redirect_to new_quiz_question_path(@quiz.id)	
     else
       render :new
     end
