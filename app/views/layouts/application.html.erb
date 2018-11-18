@@ -21,8 +21,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#"><%= link_to 'Home', root_path %> </a>
+            <li class="nav-item ">
+              <a class="nav-link" href="#"><%= link_to "Home", root_path %> </a>
             </li>
             <li class="nav-item">
               
@@ -33,23 +33,28 @@
             <li class="nav-item">
               <a class="nav-link" href="#"><%= link_to "Leaderboard", leaderboard_path %></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><%= link_to "Quizzes", quizzes_path %></a>
-            </li>
           <% if user_signed_in? %>
-            <li>
-              Hi <%= current_user.first_name %>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><%= link_to "New Quiz", new_quiz_path %></a>
             </li>
-            <li>
-            <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+          <% end %>
+          </ul>
+          <ul class="navbar-nav pull-right">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><%= link_to current_user.first_name, edit_user_registration_path %> </a>
+
+            </li>
+            <li class="nav-item pull-right">
+              <a class="nav-link" href="#"> <%= link_to "Sign Out", destroy_user_session_path, method: :delete %> </a>
             </li>
        
           <% else %>
-            <li>
-              <%= link_to "Sign In", new_user_session_path %>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><%= link_to "Sign In", new_user_session_path %></a>
             </li>
-            <li>
-              <%= link_to "Sign Up", new_user_registration_path %>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><%= link_to "Sign Up", new_user_registration_path %></a>
             </li>
           <%end%>
           </ul>
@@ -71,6 +76,7 @@
 
 
 <!-- > <nav>
+<%= link_to '  ', edit_user_registration_path %>
         <%= link_to 'Home Page', root_path %>
         |
         <%= link_to 'New Quiz', new_quiz_path %>
