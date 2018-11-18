@@ -18,7 +18,7 @@
   <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-quizzes" role="tabpanel" aria-labelledby="nav-quizzes-tab">
     
-      <% @quizzes.each do |quiz| %>
+      <% @allQuizzes.each do |quiz| %>
         <li>
           <%= link_to(quiz.title, quiz_path(quiz.id))%><br>
           By: <%= quiz.user.first_name %> <%= quiz.user.last_name %>
