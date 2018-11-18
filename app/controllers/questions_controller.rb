@@ -23,10 +23,23 @@ class QuestionsController < ApplicationController
   end
   
   def update
-    if @question.update question_params
-      format_render
+    @question = Question.find params[:id]
+    @answers = Answer.where("question_id = #{@question.id}")
+    @difficulty = @question.difficulty.to_i
+    answers_array = params[:answers]
+    question = params[:question]
+
+    if @question.update(title: question.title, description: question.description)
+      @difficulty.times do |x|
+        @answers[x].update(description: answers_array[x].description, correct: answers_array[x].correct)
+      end
+      @quiz_new = Question.create(quiz_id: @question.quiz_id, user_id: current_user.id)
+      @difficulty.times do |x|
+        Answer.create(description: x, question_id: @question.id, user_id: current_user.id )
+      end
+      render json: { quizID: @quiz_new.id, questionID: @question.id }
     else
-      flash[:danger] = "Unable to edit question"
+      render json: { status: 303 }
     end
   end
 
@@ -35,6 +48,10 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.require(:question).permit(:title, :description)
+  end
+
+  def answer_params
+    params.require(:answer).permit(:description, :correct)
   end
 
   def find_question
