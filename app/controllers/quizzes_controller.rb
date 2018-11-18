@@ -22,9 +22,14 @@ class QuizzesController < ApplicationController
   end
 
   def index
+
+    @temp = Quiz.all.order(created_at: :desc)
+    @allQuizzes = @temp.where("user_id != ?", current_user)
+
     @quizzes = Quiz.all.order(created_at: :desc)
     @myCreations = Quiz.where("user_id = ?", current_user)
     p @myCreations
+
   end
 
   def destroy
