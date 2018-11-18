@@ -67,7 +67,7 @@
   private
 
   def question_params
-    params.require(:question).permit(:title, :description)
+    params.require(:question).permit(:description)
   end
 
   def answer_params

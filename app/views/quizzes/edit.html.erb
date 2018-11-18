@@ -35,3 +35,10 @@
   </div>
 
 <% end %>
+
+<% @questions.each do |q| %>
+  <%= link_to(q.description,edit_quiz_question_path(q.quiz.id, q.id)) %>
+
+  <br>
+
+<% end %>
