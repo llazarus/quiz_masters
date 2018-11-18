@@ -48,8 +48,8 @@
         <h5 class="card-title"> <%= take.quiz.title %> </h5>
         <p class="card-text">Taken: <%= take.attempts %></p>
         <p class="card-text">Score: <%= take.score%> </p>
-        <button class="btn btn-primary">Take Quiz</button>
-        <button class="btn btn-danger"> Delete (Doesn't work)</button>
+        <button class="btn btn-primary">Take Quiz(Doesn't work)</button>
+        <button class="btn btn-danger"> <%= link_to "Delete", quiz_take_path(take.quiz.id, take.id), class: "text-light", method: :delete %> </button>
         </div>
       </div>
       <% end %>
