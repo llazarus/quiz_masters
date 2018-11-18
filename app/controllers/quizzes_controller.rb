@@ -30,6 +30,7 @@ class QuizzesController < ApplicationController
   end
 
   def edit
+    @questions = @quiz.questions
   end
 
   def update
