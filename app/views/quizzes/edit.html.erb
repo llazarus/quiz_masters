@@ -2,9 +2,9 @@
 
 <%= form_for(@quiz) do |form| %>
   <% if @quiz.errors.present?%>
-    <p>
+    <strong class="alert">
       <%= @quiz.errors.full_messages.join("<br>").html_safe%>
-    </p>
+    </strong>
   <% end %>
 
   <div class="quiz_form">

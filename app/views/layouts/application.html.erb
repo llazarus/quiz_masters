@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>`
     <%= javascript_pack_tag 'application' %>
 
@@ -31,10 +31,14 @@
         <%= link_to "Sign Up", new_user_registration_path %>
       </nav>
     </header>
-
-      <strong>
-        <%= alert %>
-      </strong>
+    
+    <div>
+      <% if alert %>
+        <strong class="alert">
+          <%= alert %>
+        </strong>
+      <% end %>
+    </div>
 
     <%= yield %>
   </body>

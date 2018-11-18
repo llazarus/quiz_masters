@@ -3,3 +3,74 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+nav {
+  background-color: rgb(72, 133, 237);
+  padding: 20px; 
+  margin-bottom: 10px;
+}
+
+nav a {
+  color: white
+}
+
+.new-quiz-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.new-quiz-form-items {
+  width: 80%;
+}
+
+.new-quiz-form-title {
+  border-bottom: 1px solid rgb(72, 133, 237);
+}
+
+.quiz-form-difficulty {
+  display: flex;
+}
+
+.quiz-form-difficulty-buttons{
+  display: flex;
+  padding-left: 10px;
+}
+
+
+.quiz-form-radio {
+  padding-left: 10px;
+}
+
+
+.quiz-form-submit input{
+  color: white;
+  background: rgb(72, 133, 237);
+  border: none;
+  font-size: 16px;
+  border-radius: 3px;
+  border: 1px solid black;
+  width: 200px;
+  padding: 7px 0;
+  margin: 10px auto;
+}
+
+.quiz-form-submit input:hover:enabled {
+  background: 
+    linear-gradient(
+      rgb(72, 133, 237), white
+    );
+    color: white;
+    text-decoration: none;
+}
+
+.quiz-form-submit input:active {
+  transform: translateY(1px);
+}
+
+
+.quiz-form-input {
+  border-radius: 3px;
+  border: 1px solid black;
+  font-size: 16px;
+  width: 100%;
+}
