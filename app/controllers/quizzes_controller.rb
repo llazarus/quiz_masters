@@ -1,6 +1,6 @@
 class QuizzesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :destroy]
-  before_action :find_quiz, only: [:show, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :destroy, :edit, :update]
+  before_action :find_quiz, only: [:show, :destroy, :edit, :update]
 
   def new
     @quiz = Quiz.new
@@ -34,6 +34,17 @@ class QuizzesController < ApplicationController
   def destroy
     @quiz.destroy
     redirect_to quizzes_path
+  end
+
+  def edit
+  end
+
+  def update
+    if @quiz.update quiz_params
+      redirect_to quiz_path(@quiz.id)
+    else
+      render :edit
+    end
   end
 
 

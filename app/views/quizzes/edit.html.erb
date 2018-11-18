@@ -1,3 +1,5 @@
+<h1>Edit</h1>
+
 <%= form_for(@quiz) do |form| %>
   <% if @quiz.errors.present?%>
     <p>
@@ -16,19 +18,19 @@
     <%= form.label :difficulty%><br>
 
     <%= form.label :Beginner%>
-    <%= form.radio_button(:difficulty, 3)%>
+    <%= form.radio_button(:difficulty, :Beginner)%>
     
     <%= form.label :Intermediate%>
-    <%= form.radio_button(:difficulty, 5)%>
+    <%= form.radio_button(:difficulty, :Intermediate)%>
 
     <%= form.label :Expert%>
-    <%= form.radio_button(:difficulty, 7)%>
+    <%= form.radio_button(:difficulty, :Expert)%>
     <br>
 
     <%= form.label :points %>
     <%= form.number_field :points%><br>
 
-    <%= form.submit("Create Quiz") %>
+    <%= form.submit("Done") %>
 
   </div>
 
