@@ -1,6 +1,7 @@
 class QuizzesController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:submit]
   before_action :authenticate_user!, only: [:new, :create, :destroy, :edit, :update]
-  before_action :find_quiz, only: [:show, :destroy, :edit, :update]
+  before_action :find_quiz, only: [:show, :destroy, :edit, :update, :submit]
 
   def new
     @quiz = Quiz.new
@@ -41,8 +42,30 @@ class QuizzesController < ApplicationController
     end
   end
 
+  def submit
+    questions = @quiz.questions
+    userAnswers = quiz_submit_params[:user_answers]
+    p '======= testing ========='
+    userAnswers.each_with_index do |question, index|
+      userAnswer = question[:answers][0][:correct]
+      userAnswerId = question[:answers][0][:answer_id]
+      dbAnswer = questions[index].answers.detect { |a| a[:id] == 74 }
+      dbAnswerActual = dbAnswer[:correct]
+      if userAnswer == dbAnswerActual
+        p "Correct!"
+      else
+        p "Incorrect!"
+      end
+    end
+    p '======= testing ========='
+    head :ok
+  end
 
   private
+
+  def quiz_submit_params
+    params.permit(user_answers: [:question_id, answers: [:answer_id, :correct]])
+  end
 
   def quiz_params
     params.require(:quiz).permit(:title, :description, :difficulty, :points)
@@ -51,6 +74,4 @@ class QuizzesController < ApplicationController
   def find_quiz
     @quiz = Quiz.find params[:id]
   end
-  
-
 end
