@@ -1,0 +1,44 @@
+
+<%= form_for(@answer) do |form| %>
+  <% if @answer.errors.present? %>
+    <p>
+      <%= @answer.errors.full_messages.join(", ") %>
+    </p>
+  <% end %>
+
+  <div class="form-group1">
+    <%= form.label :Answer1 %> <br>
+    <%= form.text_field :Answer1 %>
+  </div>
+
+  <div class="form-group2">
+    <%= form.label :Answer2 %> <br>
+    <%= form.text_field :Answer2 %>
+  </div>
+
+  <div class="form-group3">
+    <%= form.label :Answer3 %> <br>
+    <%= form.text_field :Answer3 %>
+  </div>
+
+  <div class="form-group4">
+    <%= form.label :Answer4 %> <br>
+    <%= form.text_field :Answer4 %>
+  </div>
+
+  <%= form.label :check_boxAns1%>
+  <%= form.check_box("ans1", "gooddog", {}, "true", "false")%>
+  
+  <%= form.label :check_boxAns2%>
+  <%= form.check_box("ans2", "gooddog", {}, "true", "false")%>
+
+  <%= form.label :check_boxAns3%>
+  <%= form.check_box("ans3", "gooddog", {}, "true", "false")%>
+
+  <%= form.label :check_boxAns4%>
+  <%= form.check_box("ans4", "gooddog", {}, "true", "false")%>
+  <br>
+
+  <%= form.submit %>
+<% end %>
+
