@@ -1,4 +1,4 @@
-class QuestionsController < ApplicationController
+  class QuestionsController < ApplicationController
   before_action :find_question, only: [:show, :edit, :update, :destroy]
   
   def new 
@@ -10,8 +10,11 @@ class QuestionsController < ApplicationController
     @question.user = current_user
 
     if @quiz.user == current_user && @question.save
-      # render json: question
-      format_render
+      
+      respond_to do |format|
+        format.html { render :edit } 
+        format.json { render json: @question }
+      end
       # TODO redirect/render will be unneccesary because of react. 
       # redirect_to quiz_question_path(@question.id)
     else 
@@ -19,7 +22,14 @@ class QuestionsController < ApplicationController
       flash[:danger] = "Unable to create question"
     end
 
+  end
+
+  def create
+    @question = Question.new question_params
+  end
+
   def edit
+    @answers = @question.answers
   end
   
   def update
