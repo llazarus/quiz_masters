@@ -5,7 +5,18 @@
 <p>Points: <%=@quiz.points%></p>
 
 
-<% @quiz.questions.each do |q| %>
-  <%= q.description%>
+<h2>Questions</h2>
+<% @quiz.questions.each do |question| %>
+  <ul>
+    <li><%= question.description %></li><br>
+    <h4>Answers</h4>
+    <% question.answers.each do |answer| %>
+      <%= answer.description%>
+    <% end %> 
+    <%= link_to(
+      "Edit",
+      edit_quiz_question_path(question.id)
+    )%>
 
+  </ul>
 <% end %>

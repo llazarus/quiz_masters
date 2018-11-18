@@ -30,9 +30,9 @@ class AnswersController < ApplicationController
 
   def update 
     if @answer.update answer_params
-      redirect_to edit_quiz_question_path(@answer.question.quiz.id,@question)
+      redirect_to edit_quiz_question_path(@answer.question.quiz.id,@answer.question.id)
     else
-      redirect_to edit_quiz_question_path(@answer.question.quiz.id,@question)
+      redirect_to edit_quiz_question_path(@answer.question.quiz.id,@answer.question.id)
     end
   end
 
