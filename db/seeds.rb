@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+PASSWORD = "supersecret"
+
+confirmed_user = User.find(1)
+
+10.times do
+  qz = Quiz.create(
+    title: Faker::Hacker.say_something_smart,
+    difficulty:"easy",
+    
+  )
+
