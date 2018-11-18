@@ -1,41 +1,51 @@
 <%= form_for(@quiz) do |form| %>
   <% if @quiz.errors.present?%>
-    <p>
+    <strong class="alert">
       <%= @quiz.errors.full_messages.join("<br>").html_safe%>
-    </p>
+    </strong>
   <% end %>
 
   <div class="quiz-form">
 
     <div class="quiz-form-title">
-      <%= form.label :title %>
+      <strong><%= form.label :title %></strong>
        <%= form.text_field :title, class: "quiz-form-input"%>
     </div>
 
     <div class="quiz-form-description"> 
-      <%= form.label :description%>
+      <strong><%= form.label :description%></strong>
       <%= form.text_area :description, class: "quiz-form-input" %>
     </div>
     
     <div class="quiz-form-difficulty"> 
-      <%= form.label "difficulty", "Difficulty:"%><br>
+      <strong><%= form.label "difficulty", "Difficulty:"%></strong>
       
       <div class="quiz-form-difficulty-buttons">
         <%= form.label :Beginner%>
-        <%= form.radio_button(:difficulty, :Beginner)%>
-        
+        <div class="quiz-form-radio">
+          <%= form.radio_button(:difficulty, :Beginner)%>
+        </div>
+      </div>
+      
+      <div class="quiz-form-difficulty-buttons">
         <%= form.label :Intermediate%>
-        <%= form.radio_button(:difficulty, :Intermediate)%>
+        <div class="quiz-form-radio">
+          <%= form.radio_button(:difficulty, :Intermediate)%>
+        </div>
+      </div>
 
+      <div class="quiz-form-difficulty-buttons">
         <%= form.label :Expert%>
-        <%= form.radio_button(:difficulty, :Expert)%>
-        <br>
+        <div class="quiz-form-radio">
+          <%= form.radio_button(:difficulty, :Expert)%>
+        </div>
+        
       </div>
 
     </div>
     
     <div class="quiz-form-points">
-      <%= form.label :points %>
+      <strong><%= form.label :points %></strong>
       <%= form.number_field :points, class: "quiz-form-input"%>
 
     </div>
