@@ -4,20 +4,23 @@ class AnswersController < ApplicationController
     @answer = Answer.new
   end
   
-  def create 
+  def create
+    @question = Question.find params[:question_id] 
     @answer = Answer.new answer_params
-    
+    @answer.question = @question
+    @answer.user = current_user
+
     if @answer.save
-      redirect_to edit_quiz_question_path(@answer.question.id)
+      redirect_to edit_quiz_question_path(@answer.question.quiz.id,@question)
     else
-      redirect_to edit_quiz_question_path(@answer.question.id)
+      redirect_to edit_quiz_question_path(@answer.question.quiz.id,@question)
     end
   end 
   
   def destroy
     question = @answer.question  
     @answer.destroy
-    redirect_to edit_quiz_question_path(question.id)
+    redirect_to edit_quiz_question_path(question.quiz.id, question.id)
   end
 
 
@@ -27,9 +30,9 @@ class AnswersController < ApplicationController
 
   def update 
     if @answer.update answer_params
-      redirect_to edit_quiz_question_path(@answer.question.id)
+      redirect_to edit_quiz_question_path(@answer.question.quiz.id,@question)
     else
-      redirect_to edit_quiz_question_path(@answer.question.id)
+      redirect_to edit_quiz_question_path(@answer.question.quiz.id,@question)
     end
   end
 

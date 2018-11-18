@@ -20,6 +20,7 @@
         <% else %>
           Wrong
         <% end %>
+
           <%= form_for(answer) do |form| %>
 
           <% if answer.errors.present? %>
@@ -28,10 +29,11 @@
               </p>
             <% end %>
 
-            <div class="form-group">
-              <%= form.label :correct %> <br>
-              <%= form.radio_button(:correct, "correct", class: "form-control" )%>
-            </div>
+            <%= form.radio_button(:correct, "correct" )%>
+            <%= form.label :correct, "A Correct Answer" %> <br>
+          
+            <%= form.radio_button(:correct, "wrong" )%>
+            <%= form.label :correct, "A Wrong Answer" %> <br>
 
             <div class="form-group">
               <%= form.label :description %> <br>
