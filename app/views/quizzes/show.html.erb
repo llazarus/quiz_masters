@@ -13,10 +13,10 @@
     <% question.answers.each do |answer| %>
       <%= answer.description%>
     <% end %> 
+    
     <%= link_to(
       "Edit Quiz",
       edit_quiz_question_path(@quiz.id, question.id)
     )%>
-
   </ul>
 <% end %>
