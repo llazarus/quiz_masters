@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get('/leaderboard', { to: 'leaderboards#index'})
 
   resources :quizzes do
+    post :submit, on: :member
     resources :questions do
       resources :answers, shallow: true
     end
