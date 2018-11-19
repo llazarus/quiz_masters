@@ -20,6 +20,7 @@
     <div class="tab-pane fade show active" id="nav-quizzes" role="tabpanel" aria-labelledby="nav-quizzes-tab">
     
       <% @allQuizzes.each do |quiz| %>
+        <% if !Take.find_by(quiz_id: quiz.id, user_id: current_user.id) %>
         <div class="card text-center m-2">
           <div class="card-header bg-primary text-white">
             Created by: <%= quiz.user.first_name %> <%= quiz.user.last_name %>
@@ -44,10 +45,11 @@
             <% end %>
 
             <button class="btn btn-primary">
-              <%= link_to "Take Quiz!", quiz_path(quiz.id), class: "text-white" %> 
+              <%= link_to "Take Quiz!", quiz_takes_path(quiz.id), class: "text-white", method: :post %> 
             </button>
           </div>
         </div>
+        <% end %>
       <% end %>
     </div>
   

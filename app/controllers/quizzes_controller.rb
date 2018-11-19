@@ -31,6 +31,9 @@ class QuizzesController < ApplicationController
 
     @myCreations = Quiz.where("user_id = ?", current_user).order(created_at: :desc)
     @takes = Take.where("user_id = ?", current_user).order(created_at: :desc)
+    @myTakes = Take.where.not(user_id: current_user).order(created_at: :desc)
+    # @myQuizzes = @myTakes.quiz_id
+    puts @myTakes
 
 
   end
