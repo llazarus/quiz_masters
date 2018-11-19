@@ -1,10 +1,15 @@
 <div id="welcome-splash">
-  <h1 class="display-4">Welcome to Quiz Masters!</h1>
-  <p class="lead">Test your skills against the best in the biz! 👨🏽‍💻👩🏿‍💻</p>
+  <div class="container" id="welcome-container" style="justify-content:center;">
+
+  <h1 class="display-4" style="text-align:center; color:black; font-weight:bold; font-family:Helvetica;">Welcome to Quiz Masters!</h1>
+  <p class="lead"><strong>Test your skills against the best in the biz! </strong> 👨🏽‍💻👩🏿‍💻</p>
   
+  <p>
   <% if user_signed_in? %>
     <%= link_to("Enter, If You Dare!", quizzes_path, class: "btn btn-primary btn-lg") %>
   <% else %>
     <%= link_to("Enter, If You Dare!", new_user_session_path, class: "btn btn-primary btn-lg") %>
   <% end %>
+  </p>
+</div>
 </div>
