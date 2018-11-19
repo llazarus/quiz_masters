@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # devise_for :users
   devise_for :users, :controllers => { registrations: 'registrations' }
   root to: "welcome#index"
-  get('/leaderboard', { to: 'leaderboards#index'})
+  get('/leaderboard', { to: 'welcome#leaderboard'})
 
   resources :quizzes do
     post :submit, on: :member
