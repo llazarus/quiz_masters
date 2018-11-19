@@ -3,5 +3,9 @@
   <p class="lead">This will be a statement of how awesome our project is.</p>
   <hr class="my-4">
   <p>This will be a clickable button that redirects to sign up/sign in (if user not signed in) or quiz index page.</p>
-  <a class="btn btn-primary btn-lg" href="#" role="button">Enter</a>
+  <% if user_signed_in? %>
+    <%= link_to("Enter", quizzes_path, class: "btn btn-primary btn-lg") %>
+  <% else %>
+    <%= link_to("Enter", new_user_session_path, class: "btn btn-primary btn-lg") %>
+  <% end %>
 </div>
