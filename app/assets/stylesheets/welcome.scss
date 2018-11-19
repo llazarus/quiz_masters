@@ -11,6 +11,11 @@
   background-repeat: no-repeat;
 }
 
+#welcome-container * {
+  justify-content: center;
+  text-align: center;
+}
+
 .display-3 {
   color: white;
   text-shadow: 2px 2px #000;
