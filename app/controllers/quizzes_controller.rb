@@ -1,7 +1,8 @@
 class QuizzesController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:submit]
-  before_action :authenticate_user!, only: [:new, :create, :destroy, :edit, :update]
+  # skip_before_action :verify_authenticity_token, only: [:submit]
+  before_action :authenticate_user!, only: [:new, :create, :show, :destroy, :edit, :update]
   before_action :find_quiz, only: [:show, :destroy, :edit, :update, :submit]
+  before_action :authorize_user!, only: [ :edit, :update, :destroy ]
 
   def new
     @quiz = Quiz.new
@@ -44,7 +45,7 @@ class QuizzesController < ApplicationController
 
   def update
     if @quiz.update quiz_params
-      redirect_to quiz_path(@quiz.id)
+      redirect_to quizzes_path
     else
       render :edit
     end
@@ -76,5 +77,12 @@ class QuizzesController < ApplicationController
 
   def find_quiz
     @quiz = Quiz.find params[:id]
+  end
+
+  def authorize_user!
+    unless can? :crud, @quiz
+      flash[:danger] = "Access Denied"
+      redirect_to quizzes_path
+    end
   end
 end
