@@ -20,6 +20,12 @@ class QuizzesController < ApplicationController
   end
 
   def show
+    take = Take.find_by(quiz_id: @quiz.id, user_id: current_user.id)
+    if (!take)
+      Take.create(quiz_id: @quiz.id, user_id: current_user.id)
+      take = Take.find_by(quiz_id: @quiz.id, user_id: current_user.id)
+      take.update(score: 0, attempts: 0)
+    end
   end
 
   def index
