@@ -30,6 +30,7 @@ class QuizzesController < ApplicationController
     @myCreations = Quiz.where("user_id = ?", current_user).order(created_at: :desc)
     @takes = Take.where("user_id = ?", current_user).order(created_at: :desc)
 
+
   end
 
   def destroy
