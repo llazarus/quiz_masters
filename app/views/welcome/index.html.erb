@@ -1,7 +1,7 @@
-<div class="jumbotron">
+<div id="welcome-splash">
   <h1 class="display-4">Welcome to Quiz Masters!</h1>
   <p class="lead">Test your skills against the best in the biz! 👨🏽‍💻👩🏿‍💻</p>
-  <hr class="my-4">
+  
   <% if user_signed_in? %>
     <%= link_to("Enter, If You Dare!", quizzes_path, class: "btn btn-primary btn-lg") %>
   <% else %>
