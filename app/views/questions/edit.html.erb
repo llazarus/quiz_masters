@@ -1,5 +1,7 @@
 <section>
   <%= link_to("Return to your quiz", edit_quiz_path(@question.quiz.id)) %>
+
+  <%= link_to("New Question", new_quiz_question_path(@question.quiz.id, @question), class: "btn-outline-primary") %>
 </section>
 
 <section id="edit-question-form">  
