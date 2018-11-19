@@ -1,11 +1,10 @@
 <div class="jumbotron">
-  <h1 class="display-4">Hello, World</h1>
-  <p class="lead">This will be a statement of how awesome our project is.</p>
+  <h1 class="display-4">Welcome to Quiz Masters!</h1>
+  <p class="lead">Test your skills agains the best in the biz! 👨🏽‍💻👩🏿‍💻</p>
   <hr class="my-4">
-  <p>This will be a clickable button that redirects to sign up/sign in (if user not signed in) or quiz index page.</p>
   <% if user_signed_in? %>
-    <%= link_to("Enter", quizzes_path, class: "btn btn-primary btn-lg") %>
+    <%= link_to("Enter, If You Dare!", quizzes_path, class: "btn btn-primary btn-lg") %>
   <% else %>
-    <%= link_to("Enter", new_user_session_path, class: "btn btn-primary btn-lg") %>
+    <%= link_to("Enter, If You Dare!", new_user_session_path, class: "btn btn-primary btn-lg") %>
   <% end %>
 </div>
