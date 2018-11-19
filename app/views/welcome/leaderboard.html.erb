@@ -1,0 +1,26 @@
+<div class="jumbotron jumbotron bg-cover">
+    <div class="overlay"></div>
+    <div class="container">
+      <h1 class="display-3 mb-1">Leaderboard</h1>
+      
+    </div>
+  </div>
+
+<div class="container">
+
+  <ul class="list-group">
+    <% @leaders.each do |l| %>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-4">
+            <%= l.points %>
+          </div>  
+          <div class="col-8">
+            <%= l.first_name %>
+          </div>
+        </div>
+      </li>
+      
+    <% end %>
+  </ul>
+</div>

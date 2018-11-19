@@ -6,6 +6,11 @@
   <h1>Edit Question</h1>
 
   <%= render "formQ" %>
+
+  <% if can?(:delete, @question)%>
+    <%= link_to("Delete", quiz_question_path(@question.quiz.id, @question), method: :delete)%>
+  <% end %>
+
 </section>
 
 <section id="new-answer-form">
@@ -33,10 +38,10 @@
               </p>
             <% end %>
 
-            <%= form.radio_button(:correct, "correct" )%>
+            <%= form.radio_button(:correct, true )%>
             <%= form.label :correct, "A Correct Answer" %> <br>
           
-            <%= form.radio_button(:correct, "wrong" )%>
+            <%= form.radio_button(:correct, false )%>
             <%= form.label :correct, "A Wrong Answer" %> <br>
 
             <div class="form-group">
@@ -49,6 +54,9 @@
             <%= form.submit class: "btn btn-outline-primary" %>
           <% end %>
 
+          <% if can?(:delete, answer)%>
+            <%= link_to("Delete", answer_path(answer.id), method: :delete)%>
+          <% end %>
         </li>
     <% end %>
   </ul>

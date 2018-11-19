@@ -32,6 +32,7 @@ class QuizzesController < ApplicationController
     @myCreations = Quiz.where("user_id = ?", current_user).order(created_at: :desc)
     @takes = Take.where("user_id = ?", current_user).order(created_at: :desc)
 
+
   end
 
   def destroy
@@ -53,25 +54,22 @@ class QuizzesController < ApplicationController
 
   def submit
     questions = @quiz.questions
-    userAnswers = quiz_submit_params[:user_answers]
+    userAnswers = quiz_submit_params[:answers]
     correctAnswers = 0
-    userAnswers.each_with_index do |question, index|
-      userAnswer = question[:answers][0][:correct]
-      userAnswerId = question[:answers][0][:answer_id]
-      dbAnswer = questions[index].answers.detect { |a| a[:id] == userAnswerId }
-      dbAnswerActual = dbAnswer[:correct]
-      if userAnswer == dbAnswerActual
+    quiz_submit_params.each do |questionId, answerId|
+      dbQuestion = questions.detect { |q| q[:id] == questionId.to_i }
+      dbAnswer = dbQuestion.answers.detect { |a| a[:id] == answerId.to_i }
+      if dbAnswer[:correct]
         correctAnswers += 1
       end
     end
-    p correctAnswers
-    head :ok
+    head :ok # change to redirect
   end
 
   private
 
   def quiz_submit_params
-    params.permit(user_answers: [:question_id, answers: [:answer_id, :correct]])
+    params.require(:answers).permit!
   end
 
   def quiz_params
