@@ -21,24 +21,24 @@
       <strong><%= form.label "difficulty", "Difficulty:"%></strong>
       
       <div class="quiz-form-difficulty-buttons">
-        <%= form.label :Beginner%>
-        <div class="quiz-form-radio">
+        <div class="quiz-form-radio mr-1">
           <%= form.radio_button(:difficulty, :Beginner)%>
-        </div>
+        </div> 
+        <%= form.label :Beginner%>
       </div>
       
       <div class="quiz-form-difficulty-buttons">
-        <%= form.label :Intermediate%>
-        <div class="quiz-form-radio">
+        <div class="quiz-form-radio mr-1">
           <%= form.radio_button(:difficulty, :Intermediate)%>
-        </div>
+        </div> 
+        <%= form.label :Intermediate%>
       </div>
 
       <div class="quiz-form-difficulty-buttons">
-        <%= form.label :Expert%>
-        <div class="quiz-form-radio">
+        <div class="quiz-form-radio mr-1">
           <%= form.radio_button(:difficulty, :Expert)%>
-        </div>
+        </div> 
+        <%= form.label :Expert%>
         
       </div>
 
