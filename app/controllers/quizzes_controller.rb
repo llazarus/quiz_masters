@@ -1,5 +1,5 @@
 class QuizzesController < ApplicationController
-  # skip_before_action :verify_authenticity_token, only: [:submit]
+  skip_before_action :verify_authenticity_token, only: [:submit]
   before_action :authenticate_user!, only: [:new, :create, :show, :destroy, :edit, :update]
   before_action :find_quiz, only: [:show, :destroy, :edit, :update, :submit]
   before_action :authorize_user!, only: [ :edit, :update, :destroy ]
@@ -62,7 +62,19 @@ class QuizzesController < ApplicationController
         correctAnswers += 1
       end
     end
-    head :ok # change to redirect
+    score = correctAnswers.to_f / questions.length.to_f * @quiz.points.to_f
+    take = Take.find_by(quiz_id: @quiz.id, user_id: current_user.id)
+    if take.score < score
+      score_diff = score.to_i - take.score.to_i
+      if take.update(score: score, attempts: take.attempts + 1)
+        user = User.find(current_user.id)
+        user.update(points: user.points + score_diff)
+      end
+    else
+      take.update(attempts: take.attempts + 1)
+    end
+    flash["success"] = "You got #{correctAnswers} out of #{questions.length} correct!"
+    redirect_to quiz_path(@quiz)
   end
 
   private
