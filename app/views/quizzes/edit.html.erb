@@ -1,4 +1,4 @@
-<h1>Edit</h1>
+<h1>Edit Quiz</h1>
 
 <%= form_for(@quiz) do |form| %>
   <% if @quiz.errors.present?%>
@@ -33,12 +33,19 @@
     <%= form.submit("Done") %>
 
   </div>
-
 <% end %>
 
-<% @questions.each do |q| %>
-  <%= link_to(q.description,edit_quiz_question_path(q.quiz.id, q.id)) %>
+<%= link_to(
+      "Create a New Question",
+      new_quiz_question_path(@quiz.id)
+    )%> <br>
 
-  <br>
+<% if @questions %>
+<h2>Edit Questions</h2>
+  <% @questions.each do |q| %>
+    <%= link_to(q.description,edit_quiz_question_path(q.quiz.id, q.id)) %>
 
+    <br>
+
+  <% end %>
 <% end %>

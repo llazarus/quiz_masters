@@ -1,6 +1,7 @@
 class AnswersController < ApplicationController
   before_action :find_answer, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authorize_user!
 
   def new
     @answer = Answer.new
@@ -45,5 +46,12 @@ class AnswersController < ApplicationController
 
   def find_answer
     @answer = Answer.find params[:id]
+  end
+
+  def authorize_user!
+    unless can? :crud, @answer
+      flash[:danger] = "Access Denied"
+      redirect_to quizzes_path
+    end
   end
 end
