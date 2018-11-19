@@ -45,14 +45,15 @@
       <% @takes.each do |take| %>
       <div class="card" style="width: 18rem;">
         <div class="card-body">
-        <h5 class="card-title"> <%= take.quiz.title %> </h5>
-        <p class="card-text">Taken: 
-          <% if take.attempts? %>
-        <%= take.attempts %> times</p>
-          <% end %>
-        <p class="card-text">Score: <%= take.score%> </p>
-        <button class="btn btn-primary">Take Quiz(Doesn't work)</button>
-        <button class="btn btn-danger"> <%= link_to "Delete", quiz_take_path(take.quiz.id, take.id), class: "text-light", method: :delete %> </button>
+          <h5 class="card-title"> <%= take.quiz.title %> </h5>
+            <p class="card-text">Taken: 
+            <% if take.attempts? %>
+            <%= take.attempts %> times</p>
+            <% end %>
+          <p class="card-text">Score: <%= take.score%> </p>
+            <button class="btn btn-primary"> <%= link_to "Take Quiz", quiz_path(take.quiz.id), class: "text-light" %> </button>
+            <button class="btn btn-danger"> <%= link_to "Delete", quiz_take_path(take.quiz.id, take.id), class: "text-light", method: :delete %> </button>
+          </div>
         </div>
       </div>
       <% end %>
