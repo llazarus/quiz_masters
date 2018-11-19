@@ -43,7 +43,9 @@
               </p>
             <% end %>
 
-            <a href="#" class="btn btn-primary">Take Quiz!</a>
+            <button class="btn btn-primary">
+              <%= link_to "Take Quiz!", quiz_path(quiz.id), class: "text-white" %> 
+            </button>
           </div>
         </div>
       <% end %>
