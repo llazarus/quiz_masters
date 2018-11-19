@@ -25,19 +25,19 @@
           <div class="card-body">
             <h5 class="card-title font-weight-bold"><%= quiz.title %></h5>
             <p class="card-text"> <%= quiz.description %> </p>
-            <% if quiz.difficulty === "beginner"%>
+            <% if quiz.difficulty === "Beginner"%>
               <p class="card-text text-success">
-                <%= quiz.difficulty.titleize %> 
+                <%= quiz.difficulty%> 
               </p>
 
-            <% elsif quiz.difficulty === "intermediate"%>
+            <% elsif quiz.difficulty === "Intermediate"%>
               <p class="card-text text-warning">
-                <%= quiz.difficulty.titleize %> 
+                <%= quiz.difficulty %> 
               </p>
 
             <% else %>
               <p class="card-text text-danger">
-                <%= quiz.difficulty.titleize %> 
+                <%= quiz.difficulty %> 
               </p>
             <% end %>
 
