@@ -1,7 +1,8 @@
 class QuizzesController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:submit]
-  before_action :authenticate_user!, only: [:new, :create, :destroy, :edit, :update]
+  # skip_before_action :verify_authenticity_token, only: [:submit]
+  before_action :authenticate_user!, only: [:new, :create, :show, :destroy, :edit, :update]
   before_action :find_quiz, only: [:show, :destroy, :edit, :update, :submit]
+  before_action :authorize_user!, only: [ :edit, :update, :destroy ]
 
   def new
     @quiz = Quiz.new
@@ -27,6 +28,7 @@ class QuizzesController < ApplicationController
     @allQuizzes = @temp.where("user_id != ?", current_user)
 
     @quizzes = Quiz.all.order(created_at: :desc)
+
     @myCreations = Quiz.where("user_id = ?", current_user).order(created_at: :desc)
     @takes = Take.where("user_id = ?", current_user).order(created_at: :desc)
 
@@ -44,7 +46,7 @@ class QuizzesController < ApplicationController
 
   def update
     if @quiz.update quiz_params
-      redirect_to quiz_path(@quiz.id)
+      redirect_to quizzes_path
     else
       render :edit
     end
@@ -52,25 +54,22 @@ class QuizzesController < ApplicationController
 
   def submit
     questions = @quiz.questions
-    userAnswers = quiz_submit_params[:user_answers]
+    userAnswers = quiz_submit_params[:answers]
     correctAnswers = 0
-    userAnswers.each_with_index do |question, index|
-      userAnswer = question[:answers][0][:correct]
-      userAnswerId = question[:answers][0][:answer_id]
-      dbAnswer = questions[index].answers.detect { |a| a[:id] == userAnswerId }
-      dbAnswerActual = dbAnswer[:correct]
-      if userAnswer == dbAnswerActual
+    quiz_submit_params.each do |questionId, answerId|
+      dbQuestion = questions.detect { |q| q[:id] == questionId.to_i }
+      dbAnswer = dbQuestion.answers.detect { |a| a[:id] == answerId.to_i }
+      if dbAnswer[:correct]
         correctAnswers += 1
       end
     end
-    p correctAnswers
-    head :ok
+    head :ok # change to redirect
   end
 
   private
 
   def quiz_submit_params
-    params.permit(user_answers: [:question_id, answers: [:answer_id, :correct]])
+    params.require(:answers).permit!
   end
 
   def quiz_params
@@ -79,5 +78,12 @@ class QuizzesController < ApplicationController
 
   def find_quiz
     @quiz = Quiz.find params[:id]
+  end
+
+  def authorize_user!
+    unless can? :crud, @quiz
+      flash[:danger] = "Access Denied"
+      redirect_to quizzes_path
+    end
   end
 end

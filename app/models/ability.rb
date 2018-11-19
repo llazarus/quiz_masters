@@ -41,6 +41,6 @@ class Ability
     can(:crud, Answer) do |answer|
       user == answer.user
     end
-
+    
   end
 end

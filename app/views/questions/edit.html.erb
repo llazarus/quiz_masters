@@ -1,5 +1,5 @@
 <section>
-  <%= link_to("See your Whole Quiz!", quiz_path(@question.quiz.id))%>
+  <%= link_to("Return to your quiz", edit_quiz_path(@question.quiz.id)) %>
 </section>
 
 <section id="edit-question-form">  
@@ -33,10 +33,10 @@
               </p>
             <% end %>
 
-            <%= form.radio_button(:correct, "correct" )%>
+            <%= form.radio_button(:correct, true )%>
             <%= form.label :correct, "A Correct Answer" %> <br>
           
-            <%= form.radio_button(:correct, "wrong" )%>
+            <%= form.radio_button(:correct, false )%>
             <%= form.label :correct, "A Wrong Answer" %> <br>
 
             <div class="form-group">
