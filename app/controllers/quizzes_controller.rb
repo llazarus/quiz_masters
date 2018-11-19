@@ -80,4 +80,11 @@ class QuizzesController < ApplicationController
   def find_quiz
     @quiz = Quiz.find params[:id]
   end
+
+  def authorize_user!
+    unless can? :crud, @quiz
+      flash[:danger] = "Access Denied"
+      redirect_to quizzes_path
+    end
+  end
 end
