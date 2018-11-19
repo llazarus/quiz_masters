@@ -7,16 +7,15 @@
 
 <h2>Questions</h2>
 <% @quiz.questions.each do |question| %>
-  <ul>
+  <ol>
     <li><%= question.description %></li><br>
     <h4>Answers</h4>
-    <% question.answers.each do |answer| %>
-      <%= answer.description%>
-    <% end %> 
-    
-    <%= link_to(
-      "Edit Quiz",
-      edit_quiz_question_path(@quiz.id, question.id)
-    )%>
-  </ul>
+    <ul>
+      <% question.answers.each do |answer| %>
+        <li>
+          <%= answer.description %>
+        </li>
+      <% end %> 
+    </ul>
+  </ol>
 <% end %>

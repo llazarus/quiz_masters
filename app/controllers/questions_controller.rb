@@ -1,5 +1,8 @@
   class QuestionsController < ApplicationController
   before_action :find_question, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+
+  before_action :authorize_user!
   
   def new 
     # Question will initially be created without title or
@@ -22,7 +25,7 @@
       #   format.json { render json: @question }
       # end
       # TODO redirect/render will be unneccesary because of react. 
-      redirect_to quiz_path(@quiz.id)
+      redirect_to edit_quiz_path(@quiz.id)
     else 
       # TODO same as above
       flash[:danger] = "Unable to create question"
@@ -86,5 +89,11 @@
     end
   end
 
+  def authorize_user!
+    unless can? :crud, @question
+      flash[:danger] = "Access Denied"
+      redirect_to quizzes_path
+    end
+  end
 
 end
