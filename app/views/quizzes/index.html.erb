@@ -5,13 +5,10 @@
     <a class="nav-link active" id="nav-quizzes-tab" data-toggle="tab" href="#nav-quizzes" role="tab" aria-controls="nav-quizzes" aria-selected="true">All Quizzes</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="nav-MyQuizRoom-tab" data-toggle="tab" href="#nav-MyQuizRoom" role="tab" aria-controls="nav-MyQuizRoom" aria-selected="false">My Quiz Room</a>
+    <a class="nav-link" id="nav-MyQuizRoom-tab" data-toggle="tab" href="#nav-MyQuizRoom" role="tab" aria-controls="nav-MyQuizRoom" aria-selected="false">My Quizzes</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="nav-myCreations-tab" data-toggle="tab" href="#nav-myCreations" role="tab" aria-controls="nav-myCreations" aria-selected="false">myCreations</a>
-  </li>
-    <li class="nav-item">
-    <a class="nav-link" id="nav-Leaderboard-tab" data-toggle="tab" href="#nav-Leaderboard" role="tab" aria-controls="nav-Leaderboard" aria-selected="false">Leaderboard</a>
+    <a class="nav-link" id="nav-myCreations-tab" data-toggle="tab" href="#nav-myCreations" role="tab" aria-controls="nav-myCreations" aria-selected="false">My Created Quizzes</a>
   </li>
 
 </ul>
@@ -45,7 +42,7 @@
             <% end %>
 
             <button class="btn btn-primary">
-              <%= link_to "Take Quiz!", quiz_takes_path(quiz.id), class: "text-white", method: :post %> 
+              <%= link_to "Add to 'My Quizzes'", quiz_takes_path(quiz.id), class: "text-white", method: :post %> 
             </button>
           </div>
         </div>
@@ -66,7 +63,7 @@
             <% end %>
           <p class="card-text">Score: <%= take.score%> </p>
             <button class="btn btn-primary"> <%= link_to "Take Quiz", quiz_path(take.quiz.id), class: "text-light" %> </button>
-            <button class="btn btn-danger"> <%= link_to "Delete", quiz_take_path(take.quiz.id, take.id), class: "text-light", method: :delete %> </button>
+            <button class="btn btn-danger"> <%= link_to "Remove Quiz", quiz_take_path(take.quiz.id, take.id), class: "text-light", method: :delete %> </button>
         </div>
       </div>
       <% end %>
@@ -76,10 +73,10 @@
     <div class="tab-pane fade" id="nav-myCreations" role="tabpanel" aria-labelledby="nav-myCreations-tab">
       <% @myCreations.each do |quiz| %>
         
-        <section class="card quiz mr-2">
+        <section class="card quiz m-2">
         
           <section class="card-body">
-            <%= link_to(quiz.title, quiz_path(quiz.id))%><br>
+            <%= quiz.title %><br>
 
             <% if can?(:edit, quiz) %>
               <%= link_to(
