@@ -1,5 +1,6 @@
   class QuestionsController < ApplicationController
   before_action :find_question, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user!
   
   def new 
     # Question will initially be created without title or
@@ -86,5 +87,11 @@
     end
   end
 
+  def authorize_user!
+    unless can? :crud, @question
+      flash[:danger] = "Access Denied"
+      redirect_to quizzes_path
+    end
+  end
 
 end
