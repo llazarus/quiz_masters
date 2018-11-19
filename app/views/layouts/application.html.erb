@@ -30,11 +30,11 @@
             <li class="nav-item mr-2">
               <a class="nav-link" href="#"><%= link_to "Leaderboard", leaderboard_path %></a>
             </li>
-          <% if user_signed_in? %>
+        
             <li class="nav-item mr-2">
               <a class="nav-link" href="#"><%= link_to "New Quiz", new_quiz_path %></a>
             </li>
-          <% end %>
+        
           </ul>
           <ul class="navbar-nav mr-2">
           <% if user_signed_in? %>
