@@ -44,6 +44,11 @@
 
   end
 
+  def destroy
+    @question.destroy
+
+    redirect_to edit_quiz_path(@question.quiz.id)
+  end
 
   private
 
