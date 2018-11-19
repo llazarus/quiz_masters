@@ -18,7 +18,11 @@
  .alert {
    display: flex;
    justify-content: center;
-   background-color: rgb(244, 194, 13);
    padding: 0px;
    margin: 25px;
+ }
+
+ li {
+   list-style-type: none;
+   margin: 10px 0px 10px 0px;
  }

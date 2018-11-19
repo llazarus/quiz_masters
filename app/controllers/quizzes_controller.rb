@@ -1,5 +1,4 @@
 class QuizzesController < ApplicationController
-  # skip_before_action :verify_authenticity_token, only: [:submit]
   before_action :authenticate_user!, only: [:new, :create, :show, :destroy, :edit, :update]
   before_action :find_quiz, only: [:show, :destroy, :edit, :update, :submit]
   before_action :authorize_user!, only: [ :edit, :update, :destroy ]
@@ -20,6 +19,12 @@ class QuizzesController < ApplicationController
   end
 
   def show
+    take = Take.find_by(quiz_id: @quiz.id, user_id: current_user.id)
+    if (!take)
+      Take.create(quiz_id: @quiz.id, user_id: current_user.id)
+      take = Take.find_by(quiz_id: @quiz.id, user_id: current_user.id)
+      take.update(score: 0, attempts: 0)
+    end
   end
 
   def index
@@ -31,6 +36,10 @@ class QuizzesController < ApplicationController
 
     @myCreations = Quiz.where("user_id = ?", current_user).order(created_at: :desc)
     @takes = Take.where("user_id = ?", current_user).order(created_at: :desc)
+    @myTakes = Take.where.not(user_id: current_user).order(created_at: :desc)
+    # @myQuizzes = @myTakes.quiz_id
+    puts @myTakes
+
 
   end
 
@@ -53,25 +62,34 @@ class QuizzesController < ApplicationController
 
   def submit
     questions = @quiz.questions
-    userAnswers = quiz_submit_params[:user_answers]
+    userAnswers = quiz_submit_params[:answers]
     correctAnswers = 0
-    userAnswers.each_with_index do |question, index|
-      userAnswer = question[:answers][0][:correct]
-      userAnswerId = question[:answers][0][:answer_id]
-      dbAnswer = questions[index].answers.detect { |a| a[:id] == userAnswerId }
-      dbAnswerActual = dbAnswer[:correct]
-      if userAnswer == dbAnswerActual
+    quiz_submit_params.each do |questionId, answerId|
+      dbQuestion = questions.detect { |q| q[:id] == questionId.to_i }
+      dbAnswer = dbQuestion.answers.detect { |a| a[:id] == answerId.to_i }
+      if dbAnswer[:correct]
         correctAnswers += 1
       end
     end
-    p correctAnswers
-    head :ok
+    score = correctAnswers.to_f / questions.length.to_f * @quiz.points.to_f
+    take = Take.find_by(quiz_id: @quiz.id, user_id: current_user.id)
+    if take.score < score
+      score_diff = score.to_i - take.score.to_i
+      if take.update(score: score, attempts: take.attempts + 1)
+        user = User.find(current_user.id)
+        user.update(points: user.points + score_diff)
+      end
+    else
+      take.update(attempts: take.attempts + 1)
+    end
+    flash["success"] = "You got #{correctAnswers} out of #{questions.length} correct!"
+    redirect_to quiz_path(@quiz)
   end
 
   private
 
   def quiz_submit_params
-    params.permit(user_answers: [:question_id, answers: [:answer_id, :correct]])
+    params.require(:answers).permit!
   end
 
   def quiz_params

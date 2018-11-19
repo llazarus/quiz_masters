@@ -1,3 +1,32 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#welcome-splash {
+  height: 1280px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  background-image: url(asset_path("healthy-person-woman-sport.jpg"));
+  // background-image: 
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.display-3 {
+  color: white;
+  text-shadow: 2px 2px #000;
+}
+
+.bg-cover {
+  background-image: url(asset_path("art-blue-boat-194094.jpg"));
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+}
+
+.jumbotron {
+  // text-align: center;
+  text-color: #343a40;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+
+}

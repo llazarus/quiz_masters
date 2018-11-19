@@ -6,16 +6,17 @@
 
 
 <h2>Questions</h2>
-<% @quiz.questions.each do |question| %>
-  <ol>
-    <li><%= question.description %></li><br>
-    <h4>Answers</h4>
-    <ul>
-      <% question.answers.each do |answer| %>
-        <li>
-          <%= answer.description %>
-        </li>
-      <% end %> 
-    </ul>
-  </ol>
-<% end %>
+
+<hr>
+
+<form action="/quizzes/<%= @quiz.id %>/submit" method="post">
+<%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+  <% @quiz.questions.each do |question| %>
+    <h4>Question: <%= question.description %></h4>
+    <% question.answers.each do |answer| %>
+      <%= answer.description %> <input type="radio" name="answers[<%= question.id %>]" value="<%= answer.id %>" id="<%= answer.id %>">
+      <br>
+    <% end %>
+  <% end %>
+  <button>Submit</button>
+</form>

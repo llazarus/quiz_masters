@@ -14,7 +14,7 @@
   <body>
 
     <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-lg navbar-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,20 +23,18 @@
             <li class="nav-item mr-2">
               <a class="nav-link" href="#"><%= link_to "Home", root_path %> </a>
             </li>
-            <li class="nav-item mr-2">
-              
-            </li>
+
             <li class="nav-item mr-2">
               <a class="nav-link" href="#"><%= link_to "Quizzes", quizzes_path %></a>
             </li>
             <li class="nav-item mr-2">
               <a class="nav-link" href="#"><%= link_to "Leaderboard", leaderboard_path %></a>
             </li>
-          <% if user_signed_in? %>
+        
             <li class="nav-item mr-2">
               <a class="nav-link" href="#"><%= link_to "New Quiz", new_quiz_path %></a>
             </li>
-          <% end %>
+        
           </ul>
           <ul class="navbar-nav mr-2">
           <% if user_signed_in? %>
@@ -68,6 +66,12 @@
         </strong>
       <% end %>
     </div>
+
+    <% flash.each do |type, message| %>
+      <div class="alert alert-<%= type %>">
+        <%= message %>
+      </div>
+    <% end %>
 
     <%= yield %>
   </body>

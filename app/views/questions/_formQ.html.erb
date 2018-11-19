@@ -1,17 +1,23 @@
-<%= form_for([:quiz, @question]) do |form| %>
+<div class="quiz-form">
+  <%= form_for([:quiz, @question]) do |form| %>
 
-<% if @question.errors.present? %>
-    <p>
-      <%= @question.errors.full_messages.join(", ") %>
-    </p>
+  <% if @question.errors.present? %>
+      <p>
+        <%= @question.errors.full_messages.join(", ") %>
+      </p>
+    <% end %>
+
+
+    <div class="form-group">
+      <div class="quiz-form-description">
+        <%= form.label :description %> <br>
+        <%= form.text_area :description, class: "form-control" %>    
+      </div>
+    </div>
+
+
+    <div class="quiz-form-submit">
+      <%= form.submit("Submit Question",class: "btn btn-outline-primary")%>
+    </div>
   <% end %>
-
-  <div class="form-group">
-    <%= form.label :description %> <br>
-    <%= form.text_area :description, class: "form-control" %>
-  </div>
-
-
-
-  <%= form.submit("Submit Question",class: "btn btn-outline-primary")%>
-<% end %>
+</div>
