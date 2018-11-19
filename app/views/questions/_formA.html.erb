@@ -1,3 +1,4 @@
+<div class="quiz-form">
 <%= form_for([@question.quiz, @question, @answer]) do |form| %>
 
 <% if @answer.errors.present? %>
@@ -13,9 +14,14 @@
     <%= form.label :correct, "A Wrong Answer" %> <br>
  
   <div class="form-group">
-    <%= form.label :description %> <br>
-    <%= form.text_area :description, class: "form-control" %>
+    <div class="quiz-form-description">
+      <%= form.label :description %> <br>
+      <%= form.text_area :description, class: "form-control" %>
+    </div>
   </div>
 
-  <%= form.submit class: "btn btn-outline-primary" %>
+  <div class="quiz-form-submit">
+    <%= form.submit class: "btn btn-outline-primary" %>
+  </div>
 <% end %>
+</div>
