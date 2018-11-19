@@ -2,7 +2,7 @@ class QuizzesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:submit]
   before_action :authenticate_user!, only: [:new, :create, :destroy, :edit, :update]
   before_action :find_quiz, only: [:show, :destroy, :edit, :update, :submit]
-  before_action :authorize_user!, except: [ :index, :submit ]
+  before_action :authorize_user!, only: [ :edit, :update, :destroy ]
 
   def new
     @quiz = Quiz.new
