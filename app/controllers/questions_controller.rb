@@ -1,6 +1,7 @@
   class QuestionsController < ApplicationController
   before_action :find_question, only: [:show, :edit, :update, :destroy]
-  
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+
   def new 
     # Question will initially be created without title or
     # description. It will only have the PK which is id.
