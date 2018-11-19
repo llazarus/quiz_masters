@@ -14,10 +14,10 @@ class User < ApplicationRecord
   private 
 
   def titleize_first_name
-    self.title = self.first_name.titleize
+    self.first_name = self.first_name.titleize
   end
 
   def titleize_last_name
-    self.title = self.last_name.titleize
+    self.last_name = self.last_name.titleize
   end
 end
