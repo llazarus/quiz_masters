@@ -1,8 +1,7 @@
   class QuestionsController < ApplicationController
-  before_action :find_question, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-
-  before_action :authorize_user!
+  before_action :find_question, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user!, only: [ :edit, :destroy ]
   
   def new 
     # Question will initially be created without title or
@@ -20,14 +19,9 @@
 
     if @quiz.user == current_user && @question.save
       
-      # respond_to do |format|
-      #   format.html { render :new } 
-      #   format.json { render json: @question }
-      # end
-      # TODO redirect/render will be unneccesary because of react. 
+ 
       redirect_to edit_quiz_path(@quiz.id)
     else 
-      # TODO same as above
       flash[:danger] = "Unable to create question"
 
     end
@@ -47,24 +41,7 @@
       redirect_to edit_quiz_question_path(@question.quiz.id, @question.id)
     end
 
-    # @question = Question.find params[:id]
-    # @answers = Answer.where("question_id = #{@question.id}")
-    # @difficulty = @question.difficulty.to_i
-    # answers_array = params[:answers]
-    # question = params[:question]
 
-    # if @question.update(title: question.title, description: question.description)
-    #   @difficulty.times do |x|
-    #     @answers[x].update(description: answers_array[x].description, correct: answers_array[x].correct)
-    #   end
-    #   @quiz_new = Question.create(quiz_id: @question.quiz_id, user_id: current_user.id)
-    #   @difficulty.times do |x|
-    #     Answer.create(description: x, question_id: @question.id, user_id: current_user.id )
-    #   end
-    #   render json: { quizID: @quiz_new.id, questionID: @question.id }
-    # else
-    #   render json: { status: 303 }
-    # end
   end
 
 
@@ -84,7 +61,7 @@
 
   def format_render
     respond_to do |format|
-      format.html { render } # this will render `views/questions/.html.erb`
+      format.html { render } 
       format.json { render json: @question }
     end
   end
