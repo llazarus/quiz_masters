@@ -7,4 +7,17 @@ class User < ApplicationRecord
   has_many :quizzes
   has_many :questions
   has_many :answers
+
+  before_save :titleize_first_name
+  before_save :titleize_last_name
+
+  private 
+
+  def titleize_first_name
+    self.title = self.first_name.titleize
+  end
+
+  def titleize_last_name
+    self.title = self.last_name.titleize
+  end
 end
