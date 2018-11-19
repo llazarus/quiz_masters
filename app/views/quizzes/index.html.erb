@@ -5,7 +5,7 @@
     <a class="nav-link active" id="nav-quizzes-tab" data-toggle="tab" href="#nav-quizzes" role="tab" aria-controls="nav-quizzes" aria-selected="true">All Quizzes</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="nav-myTakes-tab" data-toggle="tab" href="#nav-myTakes" role="tab" aria-controls="nav-myTakes" aria-selected="false">To Takes, and Takings</a>
+    <a class="nav-link" id="nav-myTakes-tab" data-toggle="tab" href="#nav-myTakes" role="tab" aria-controls="nav-myTakes" aria-selected="false">My Quiz Room</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="nav-myCreations-tab" data-toggle="tab" href="#nav-myCreations" role="tab" aria-controls="nav-myCreations" aria-selected="false">myCreations</a>
@@ -46,7 +46,10 @@
       <div class="card" style="width: 18rem;">
         <div class="card-body">
         <h5 class="card-title"> <%= take.quiz.title %> </h5>
-        <p class="card-text">Taken: <%= take.attempts %></p>
+        <p class="card-text">Taken: 
+          <% if take.attempts? %>
+        <%= take.attempts %> times</p>
+          <% end %>
         <p class="card-text">Score: <%= take.score%> </p>
         <button class="btn btn-primary">Take Quiz(Doesn't work)</button>
         <button class="btn btn-danger"> <%= link_to "Delete", quiz_take_path(take.quiz.id, take.id), class: "text-light", method: :delete %> </button>
