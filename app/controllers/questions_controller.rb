@@ -22,7 +22,7 @@
       #   format.json { render json: @question }
       # end
       # TODO redirect/render will be unneccesary because of react. 
-      redirect_to quiz_path(@quiz.id)
+      redirect_to edit_quiz_path(@quiz.id)
     else 
       # TODO same as above
       flash[:danger] = "Unable to create question"

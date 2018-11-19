@@ -43,7 +43,7 @@ class QuizzesController < ApplicationController
 
   def update
     if @quiz.update quiz_params
-      redirect_to quiz_path(@quiz.id)
+      redirect_to edit_quiz_path(@quiz.id)
     else
       render :edit
     end
