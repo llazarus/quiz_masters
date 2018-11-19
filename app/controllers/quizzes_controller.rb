@@ -1,5 +1,5 @@
 class QuizzesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :show, :destroy, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :index, :show, :destroy, :edit, :update]
   before_action :find_quiz, only: [:show, :destroy, :edit, :update, :submit]
   before_action :authorize_user!, only: [ :edit, :update, :destroy ]
 

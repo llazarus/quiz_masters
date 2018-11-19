@@ -94,7 +94,7 @@
         </section>
       <% end %>
 
-      <% if current_user.admin == true %>
+      <% if current_user&.admin == true %>
         <% Quiz.all.each do |quiz| %>
           <section class="card quiz m-2">
             <section class="card-body">
