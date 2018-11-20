@@ -20,17 +20,17 @@
         <% if !Take.find_by(quiz_id: quiz.id, user_id: current_user.id) %>
         <div class="card text-center m-2">
           <div class="card-header bg-primary text-white">
-            Created by: <%= quiz.user.first_name %> <%= quiz.user.last_name %>
+            Created by: <%= quiz.user.username %>
           </div>
           <div class="card-body">
             <h5 class="card-title font-weight-bold"><%= quiz.title %></h5>
             <p class="card-text"> <%= quiz.description %> </p>
-            <% if quiz.difficulty === "Beginner"%>
+            <% if quiz.difficulty == "Beginner"%>
               <p class="card-text text-success">
                 <%= quiz.difficulty%> 
               </p>
 
-            <% elsif quiz.difficulty === "Intermediate"%>
+            <% elsif quiz.difficulty == "Intermediate"%>
               <p class="card-text text-warning">
                 <%= quiz.difficulty %> 
               </p>
@@ -59,9 +59,11 @@
           <h5 class="card-title"> <%= take.quiz.title %> </h5>
             <p class="card-text">Taken: 
             <% if take.attempts? %>
-            <%= take.attempts %> times</p>
+              <%= pluralize(take.attempts, 'time') %>
+            <% else %>
+              0 times
             <% end %>
-          <p class="card-text">Score: <%= take.score%> </p>
+          <p class="card-text">Score: <%= take.score%>/<%= take.quiz.points %> </p>
             <button class="btn btn-primary"> <%= link_to "Take Quiz", quiz_path(take.quiz.id), class: "text-light" %> </button>
             <button class="btn btn-danger"> <%= link_to "Remove Quiz", quiz_take_path(take.quiz.id, take.id), class: "text-light", method: :delete %> </button>
         </div>
