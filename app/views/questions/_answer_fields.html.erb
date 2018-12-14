@@ -1,0 +1,17 @@
+<div class="nested-fields">
+
+  <div class="field">
+    <%= form.text_area :description %>
+
+  </div>
+
+  <div class="field">
+    <%= form.radio_button :correct, true %>
+    <%= form.label :correct, "A Correct Answer"%>
+  </div>
+ 
+  <div class="field">
+    <%= form.radio_button :correct, false %>
+    <%= form.label :correct, "A Wrong Answer"%>
+  </div>
+</div>

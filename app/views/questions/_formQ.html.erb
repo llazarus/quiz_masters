@@ -11,7 +11,17 @@
     <%= form.text_area :description, class: "form-control" %>
   </div>
 
+  <h3>Answers</h3>
 
+  <%= form.fields_for :answers do |answer| %>
+
+    <%= render 'answer_fields', :form => answer %>
+
+    <% end %>
+
+  <div class='links'>
+    <%= link_to_add_association 'Add answer', form, :answers, form_name: 'form' %>
+  </div>
 
   <%= form.submit("Submit Question",class: "btn btn-outline-primary")%>
 <% end %>

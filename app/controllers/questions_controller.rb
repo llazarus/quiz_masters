@@ -11,19 +11,29 @@
   end
 
   def create
-    puts params
+
     @quiz = Quiz.find params[:quiz_id]
     @question = Question.new question_params
     @question.quiz = @quiz
     @question.user = current_user
+  
+    # params[:question][:answers_attributes].each do |key, val|
+    #   ans = Answer.new(val)
+    #   ans.question = @question
+    #   ans.user = current_user
+    #   ans.save
+    # end
 
     if @quiz.user == current_user && @question.save
-      
+      @question.answers.each do |ans|
+        ans.user = current_user
+        ans.save
+      end
  
       redirect_to edit_quiz_path(@quiz.id)
     else 
-      flash[:danger] = "Unable to create question"
-
+      flash[:danger] = @question.errors.full_messages
+      redirect_to edit_quiz_path(@quiz.id)
     end
   end
 
@@ -53,7 +63,7 @@
   private
 
   def question_params
-    params.require(:question).permit(:description)
+    params.require(:question).permit(:description, answers_attributes: [:id, :_destroy, :correct, :description])
   end
 
   def answer_params
