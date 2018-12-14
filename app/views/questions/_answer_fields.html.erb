@@ -5,15 +5,10 @@
 
   </div>
 
-  <div class="field">
-    <%= form.radio_button :correct, true %>
+   <div class="field">
+    <%= form.check_box :correct, {}, true %>
     <%= form.label :correct, "A Correct Answer"%>
   </div>
  
-  <div class="field">
-    <%= form.radio_button :correct, false %>
-    <%= form.label :correct, "A Wrong Answer"%>
-  </div>
-
   <%= link_to_remove_association "Remove Answer", form %>
 </div>

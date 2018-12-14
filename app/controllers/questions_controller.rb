@@ -16,13 +16,6 @@
     @question = Question.new question_params
     @question.quiz = @quiz
     @question.user = current_user
-  
-    # params[:question][:answers_attributes].each do |key, val|
-    #   ans = Answer.new(val)
-    #   ans.question = @question
-    #   ans.user = current_user
-    #   ans.save
-    # end
 
     if @quiz.user == current_user && @question.save
       @question.answers.each do |ans|
