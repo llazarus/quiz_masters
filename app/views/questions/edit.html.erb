@@ -12,12 +12,14 @@
       <%= render "formQ" %>
       <% if can?(:delete, @question)%>
 
-        <%= link_to("Delete", quiz_question_path(@question.quiz.id, @question), method: :delete)%>
-      <% end %>
-    </div>
-  </div>
+  <% if can?(:delete, @question)%>
+    <%= link_to("Delete Question", quiz_question_path(@question.quiz.id, @question), method: :delete)%>
+  <% end %>
 
 
+<!--<section id="new-answer-form">
+  <h2>New Answer</h2>
+  <%= render "formA" %>
 </section>
 
 
@@ -76,7 +78,35 @@
               <% end %>
             </li>
         <% end %>
-      </ul>
-    </section>
-  </div>
-</div>
+
+          <%= form_for(answer) do |form| %>
+
+          <% if answer.errors.present? %>
+              <p>
+                <%= answer.errors.full_messages.join(", ") %>
+              </p>
+            <% end %>
+
+            <%= form.radio_button(:correct, true )%>
+            <%= form.label :correct, "A Correct Answer" %> <br>
+          
+            <%= form.radio_button(:correct, false )%>
+            <%= form.label :correct, "A Wrong Answer" %> <br>
+
+            <div class="form-group">
+              <%= form.label :description %> <br>
+              <%= form.text_area :description, class: "form-control" %>
+            </div>
+
+
+
+            <%= form.submit class: "btn btn-outline-primary" %>
+          <% end %>
+
+          <% if can?(:delete, answer)%>
+            <%= link_to("Delete", answer_path(answer.id), method: :delete)%>
+          <% end %>
+        </li>
+    <% end %>
+  </ul>
+</section>-->
