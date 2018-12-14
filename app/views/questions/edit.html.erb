@@ -10,12 +10,12 @@
   <%= render "formQ" %>
 
   <% if can?(:delete, @question)%>
-    <%= link_to("Delete", quiz_question_path(@question.quiz.id, @question), method: :delete)%>
+    <%= link_to("Delete Question", quiz_question_path(@question.quiz.id, @question), method: :delete)%>
   <% end %>
 
 </section>
 
-<section id="new-answer-form">
+<!--<section id="new-answer-form">
   <h2>New Answer</h2>
   <%= render "formA" %>
 </section>
@@ -62,4 +62,4 @@
         </li>
     <% end %>
   </ul>
-</section>
+</section>-->
