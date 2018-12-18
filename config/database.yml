@@ -83,3 +83,6 @@ production:
   database: quiz_masters_production
   username: quiz_masters
   password: <%= ENV['QUIZ_MASTERS_DATABASE_PASSWORD'] %>
+  # For deployment to Heroku
+  url:  <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
