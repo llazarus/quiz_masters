@@ -1,13 +1,13 @@
 <div class="nested-fields">
 
-  <div class="field">
-    <%= form.text_area :description %>
+  <div class="field form-group">
+    <%= form.text_area :description, class: "form-control" %>
 
   </div>
 
-   <div class="field">
-    <%= form.check_box :correct, {}, true %>
-    <%= form.label :correct, "A Correct Answer"%>
+   <div class="field form-check">
+    <%= form.check_box :correct, {class: "form-check-input", id: "correct"}, true %>
+    <%= form.label :correct, "The Correct Answer", class: "form-check-label", for: "correct"%>
   </div>
  
   <%= link_to_remove_association "Remove Answer", form %>
