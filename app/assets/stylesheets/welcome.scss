@@ -2,10 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$primary: #03A9F4;
+$secondary: #FFC107;
+$light: #B3E5FC;
+$dark: #0288D1;
+$white: #FFFFFF;
+$gray: #BDBDBD;
+$gray-dark: #757575;
+$black: #212121;
+
 #welcome-splash {
-  height: 1080px;
+  height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  background-image: url(asset_path("healthy-person-woman-sport.jpg"));
+  background-image: url(asset_path("healthy-person-woman-sport.jpg")), linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+  background-blend-mode: multiply;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -16,9 +26,21 @@
   text-align: center;
 }
 
-.display-3 {
+.splash-title {
+  text-align: center; 
+  font-weight: 200; 
+  font-family: Helvetica;
   color: white;
   text-shadow: 2px 2px #000;
+}
+
+.lead {
+  font-weight: 200;
+  text-shadow: 1.5px 1.5px #000;
+}
+
+p > a {
+  font-weight: 200;
 }
 
 .bg-cover {
@@ -29,8 +51,7 @@
 }
 
 .jumbotron {
-  // text-align: center;
-  text-color: #343a40;
+  color: #343a40;
   padding-top: 10rem;
   padding-bottom: 10rem;
 

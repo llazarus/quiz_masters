@@ -1,6 +1,13 @@
 // Place all the styles related to the quizzes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$primary: #FF9800;
+$secondary: #FFEB3B;
+$light: #FFE0B2;
+$dark: #F57C00;
+$gray: #BDBDBD;
+$gray-dark: #757575;
+$black: #212121;
 
 h1 {
   display: flex;
@@ -106,11 +113,11 @@ h1 {
 }
 
 nav {
-  background-color: rgb(72, 133, 237);
+  background-color: white;
 }
 
 nav > * a {
-  color: white;
+  color: $gray-dark;
 }
 
 .nav-tabs {

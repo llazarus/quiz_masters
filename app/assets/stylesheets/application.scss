@@ -11,9 +11,11 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require custom_bootstrap_theme
  *= require_self
  */
- @import 'bootstrap';
+
+
 
  .alert {
    display: flex;
